@@ -1,1 +1,1 @@
-web: java -jar build/libs/demo2-0.0.1-SNAPSHOT.jar --server.port=$PORT
+web: java -jar build/libs/menuplanner-api-0.0.1-SNAPSHOT.jar --server.port=$PORT

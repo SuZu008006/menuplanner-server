@@ -1,4 +1,5 @@
-alltests:
-	cd web && make test
-	cd server && make test
-	cd web && make e2e
+start:
+	source .env && ./gradlew bootrun
+
+test:
+	source .env && /usr/bin/time ./gradlew clean build
