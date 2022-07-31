@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface MenuRepository : JpaRepository<MenuRecord, Long> {
-    override fun findAll(): MutableList<MenuRecord>
+    override fun findAll(): List<MenuRecord>
 }
