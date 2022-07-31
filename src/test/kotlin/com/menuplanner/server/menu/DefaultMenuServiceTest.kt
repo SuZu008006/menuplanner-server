@@ -11,7 +11,7 @@ class DefaultMenuServiceTest {
     fun `allMenu() transforms MenuRecord from MenuRepository`() {
         spyStubMenuRepository = SpyStubMenuRepository()
         spyStubMenuRepository.allMenu_returnValue = listOf(
-            MenuRecord(title = "カレー")
+            MenuRecord(title = "menuTitleOne")
         )
 
         menuService = DefaultMenuService(spyStubMenuRepository)
@@ -21,7 +21,7 @@ class DefaultMenuServiceTest {
 
 
         val expectedMenu = listOf(
-            MenuRecord(title = "カレー")
+            MenuRecord(title = "menuTitleOne")
         )
         assertEquals(expectedMenu, actualMenu)
     }

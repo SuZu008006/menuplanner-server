@@ -19,15 +19,15 @@ class MenuRepositoryTest {
 
     @Test
     fun `return all menu data`() {
-        entityManager.persist(MenuRecord(title = "唐揚げ"))
-        entityManager.persist(MenuRecord(title = "ステーキ"))
+        entityManager.persist(MenuRecord(title = "menuTitleOne"))
+        entityManager.persist(MenuRecord(title = "menuTitleTwo"))
 
 
         val allMenu = menuRepository.findAll()
 
 
         assertEquals(allMenu.size, 2)
-        assertEquals(allMenu[0].title, "唐揚げ")
-        assertEquals(allMenu[1].title, "ステーキ")
+        assertEquals(allMenu[0].title, "menuTitleOne")
+        assertEquals(allMenu[1].title, "menuTitleTwo")
     }
 }
