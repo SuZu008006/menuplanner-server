@@ -28,9 +28,13 @@ class IngredientRepositoryTest {
 
 
         assertEquals(allIngredient.size, 2)
+        assertEquals(allIngredient[0].ingredient_id, 1)
+        assertEquals(allIngredient[0].id, 1)
         assertEquals(allIngredient[0].item, "ingredientNameOne")
         assertEquals(allIngredient[0].quantity, 1)
         assertEquals(allIngredient[0].weight, 10)
+        assertEquals(allIngredient[1].ingredient_id, 2)
+        assertEquals(allIngredient[1].id, 1)
         assertEquals(allIngredient[1].item, "ingredientNameTwo")
     }
 }

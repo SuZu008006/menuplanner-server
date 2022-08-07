@@ -27,7 +27,9 @@ class MenuRepositoryTest {
 
 
         assertEquals(allMenu.size, 2)
+        assertEquals(allMenu[0].id, 1)
         assertEquals(allMenu[0].title, "menuTitleOne")
+        assertEquals(allMenu[1].id, 2)
         assertEquals(allMenu[1].title, "menuTitleTwo")
     }
 }
