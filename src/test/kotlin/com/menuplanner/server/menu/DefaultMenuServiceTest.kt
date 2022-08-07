@@ -1,6 +1,7 @@
 package com.menuplanner.server.menu
 
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class DefaultMenuServiceTest {
@@ -8,17 +9,22 @@ class DefaultMenuServiceTest {
     private lateinit var spyStubIngredientRepository: SpyStubIngredientRepository
     private lateinit var menuService: DefaultMenuService
 
+    @BeforeEach
+    fun setUp() {
+        spyStubMenuRepository = SpyStubMenuRepository()
+        spyStubIngredientRepository = SpyStubIngredientRepository()
+
+        menuService = DefaultMenuService(
+            spyStubMenuRepository,
+            spyStubIngredientRepository
+        )
+    }
+
     @Test
     fun `allMenu() transforms MenuRecord from MenuRepository`() {
-        spyStubMenuRepository = SpyStubMenuRepository()
         spyStubMenuRepository.allMenu_returnValue = listOf(
             MenuRecord(title = "menuTitleOne")
         )
-        spyStubIngredientRepository = SpyStubIngredientRepository()
-        spyStubIngredientRepository.allIngredient_returnValue = listOf(
-        )
-
-        menuService = DefaultMenuService(spyStubMenuRepository, spyStubIngredientRepository)
 
 
         val actualMenu = menuService.allMenu()
@@ -32,24 +38,18 @@ class DefaultMenuServiceTest {
 
     @Test
     fun `allIngredient() transforms IngredientRecord from IngredientRepository`() {
-        spyStubMenuRepository = SpyStubMenuRepository()
-        spyStubMenuRepository.allMenu_returnValue = listOf(
-        )
-        spyStubIngredientRepository = SpyStubIngredientRepository()
         spyStubIngredientRepository.allIngredient_returnValue = listOf(
-            IngredientRecord(id = 1, item = "ingredientItemOne", quantity = 10, weight = 100),
-            IngredientRecord(id = 1, item = "ingredientItemTwo", quantity = 20, weight = 200),
+            IngredientRecord(item = "ingredientItemOne", quantity = 10, weight = 100),
+            IngredientRecord(item = "ingredientItemTwo", quantity = 20, weight = 200),
         )
 
-        menuService = DefaultMenuService(spyStubMenuRepository, spyStubIngredientRepository)
 
-
-        val actualIngredient = menuService.allIngredient(1)
+        val actualIngredient = menuService.allIngredient(9999)
 
 
         val expectedIngredient = listOf(
-            IngredientRecord(id = 1, item = "ingredientItemOne", quantity = 10, weight = 100),
-            IngredientRecord(id = 1, item = "ingredientItemTwo", quantity = 20, weight = 200),
+            IngredientRecord(item = "ingredientItemOne", quantity = 10, weight = 100),
+            IngredientRecord(item = "ingredientItemTwo", quantity = 20, weight = 200),
         )
         assertEquals(expectedIngredient, actualIngredient)
     }
