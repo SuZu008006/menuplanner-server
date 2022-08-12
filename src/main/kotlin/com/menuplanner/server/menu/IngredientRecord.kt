@@ -14,7 +14,5 @@ data class IngredientRecord(
     @Column(name = "item")
     var item: String = "",
     @Column(name = "quantity")
-    var quantity: Long = 0,
-    @Column(name = "weight")
-    var weight: Long = 0,
+    var quantity: String = "",
 )

@@ -39,8 +39,8 @@ class DefaultMenuServiceTest {
     @Test
     fun `allIngredient() transforms IngredientRecord from IngredientRepository`() {
         spyStubIngredientRepository.allIngredient_returnValue = listOf(
-            IngredientRecord(item = "ingredientItemOne", quantity = 10, weight = 100),
-            IngredientRecord(item = "ingredientItemTwo", quantity = 20, weight = 200),
+            IngredientRecord(item = "ingredientItemOne", quantity = "大さじ1"),
+            IngredientRecord(item = "ingredientItemTwo", quantity = "大さじ2"),
         )
 
 
@@ -48,8 +48,8 @@ class DefaultMenuServiceTest {
 
 
         val expectedIngredient = listOf(
-            IngredientRecord(item = "ingredientItemOne", quantity = 10, weight = 100),
-            IngredientRecord(item = "ingredientItemTwo", quantity = 20, weight = 200),
+            IngredientRecord(item = "ingredientItemOne", quantity = "大さじ1"),
+            IngredientRecord(item = "ingredientItemTwo", quantity = "大さじ2"),
         )
         assertEquals(expectedIngredient, actualIngredient)
     }

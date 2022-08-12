@@ -35,8 +35,8 @@ class MenuControllerTest {
     @Test
     fun `when there are ingredient, menu_{menuCode} endpoint returns list of ingredient`() {
         stubMenuService.allIngredient_return = listOf(
-            IngredientRecord(item = "ingredientItemOne", quantity = 10, weight = 100),
-            IngredientRecord(item = "ingredientItemTwo", quantity = 20, weight = 200),
+            IngredientRecord(item = "ingredientItemOne", quantity = "大さじ1"),
+            IngredientRecord(item = "ingredientItemTwo", quantity = "大さじ2"),
         )
 
         val MENU_CODE = 9999
@@ -49,10 +49,8 @@ class MenuControllerTest {
 
             .andExpect(status().isOk)
             .andExpect(jsonPath("$[0].item", equalTo("ingredientItemOne")))
-            .andExpect(jsonPath("$[0].quantity", equalTo(10)))
-            .andExpect(jsonPath("$[0].weight", equalTo(100)))
+            .andExpect(jsonPath("$[0].quantity", equalTo("大さじ1")))
             .andExpect(jsonPath("$[1].item", equalTo("ingredientItemTwo")))
-            .andExpect(jsonPath("$[1].quantity", equalTo(20)))
-            .andExpect(jsonPath("$[1].weight", equalTo(200)))
+            .andExpect(jsonPath("$[1].quantity", equalTo("大さじ2")))
     }
 }

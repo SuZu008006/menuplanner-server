@@ -1,0 +1,4 @@
+export DATABASE_URL=jdbc:postgresql://localhost:xxxx/postgres
+export DATABASE_USERNAME=""
+export DATABASE_PASSWORD=""
+export PORT=xxxx

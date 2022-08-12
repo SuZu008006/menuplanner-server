@@ -19,9 +19,9 @@ class IngredientRepositoryTest {
 
     @Test
     fun `return ingredient of target menu`() {
-        entityManager.persist(IngredientRecord(id = 1, item = "ingredientNameOne", quantity = 1, weight = 10))
-        entityManager.persist(IngredientRecord(id = 1, item = "ingredientNameTwo", quantity = 1, weight = 10))
-        entityManager.persist(IngredientRecord(id = 2, item = "ingredientName", quantity = 1, weight = 10))
+        entityManager.persist(IngredientRecord(id = 1, item = "ingredientNameOne", quantity = "大さじ1"))
+        entityManager.persist(IngredientRecord(id = 1, item = "ingredientNameTwo", quantity = "大さじ2"))
+        entityManager.persist(IngredientRecord(id = 2, item = "ingredientName", quantity = "大さじ3"))
 
 
         val allIngredient = ingredientRepository.findDistinctById(1)
@@ -31,8 +31,7 @@ class IngredientRepositoryTest {
         assertEquals(allIngredient[0].ingredient_id, 1)
         assertEquals(allIngredient[0].id, 1)
         assertEquals(allIngredient[0].item, "ingredientNameOne")
-        assertEquals(allIngredient[0].quantity, 1)
-        assertEquals(allIngredient[0].weight, 10)
+        assertEquals(allIngredient[0].quantity, "大さじ1")
         assertEquals(allIngredient[1].ingredient_id, 2)
         assertEquals(allIngredient[1].id, 1)
         assertEquals(allIngredient[1].item, "ingredientNameTwo")

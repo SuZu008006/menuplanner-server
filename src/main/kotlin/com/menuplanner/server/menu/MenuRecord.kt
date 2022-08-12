@@ -3,7 +3,7 @@ package com.menuplanner.server.menu
 import javax.persistence.*
 
 @Entity
-@Table(name = "menus")
+@Table(name = "menu")
 data class MenuRecord(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
