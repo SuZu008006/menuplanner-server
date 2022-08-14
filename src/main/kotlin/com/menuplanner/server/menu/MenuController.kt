@@ -12,7 +12,7 @@ class MenuController(private val menuService: MenuService) {
     }
 
     @GetMapping("/{menuCode}")
-    fun getAllIngredient(@PathVariable menuCode: Long): List<IngredientRecord> {
+    fun getAllIngredient(@PathVariable menuCode: Int): List<IngredientRecord> {
         return menuService.allIngredient(menuCode)
     }
 }

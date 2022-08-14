@@ -8,13 +8,15 @@ import org.springframework.data.repository.query.FluentQuery
 import java.util.*
 import java.util.function.Function
 
-@Suppress("SpringDataRepositoryMethodParametersInspection", "WRONG_NULLABILITY_FOR_JAVA_OVERRIDE",
-    "OVERRIDE_DEPRECATION", "SpringDataMethodInconsistencyInspection")
-class SpyStubIngredientRepository() : IngredientRepository {
-    lateinit var allIngredient_returnValue: List<IngredientRecord>
+@Suppress(
+    "SpringDataRepositoryMethodParametersInspection", "WRONG_NULLABILITY_FOR_JAVA_OVERRIDE",
+    "OVERRIDE_DEPRECATION", "SpringDataMethodInconsistencyInspection"
+)
+class SpyStubSeasoningRepository() : IngredientRepository {
+    lateinit var allSeasoning_returnValue: List<IngredientRecord>
 
     override fun findDistinctById(id: Int): List<IngredientRecord> {
-        return allIngredient_returnValue
+        return allSeasoning_returnValue
     }
 
     override fun <S : IngredientRecord?> save(entity: S): S {

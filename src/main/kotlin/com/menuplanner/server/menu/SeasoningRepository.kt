@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface MenuRepository : JpaRepository<MenuRecord, Int> {
-    override fun findAll(): List<MenuRecord>
+interface SeasoningRepository : JpaRepository<SeasoningRecord, Int> {
+    fun findDistinctById(id: Int): List<SeasoningRecord>
 }

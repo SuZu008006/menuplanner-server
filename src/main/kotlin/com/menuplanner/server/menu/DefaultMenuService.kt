@@ -11,12 +11,12 @@ class DefaultMenuService(
         return menuRepository.findAll()
     }
 
-    override fun allIngredient(id: Long): List<IngredientRecord> {
+    override fun allIngredient(id: Int): List<IngredientRecord> {
         return ingredientRepository.findDistinctById(id)
     }
 }
 
 interface MenuService {
     fun allMenu(): List<MenuRecord>
-    fun allIngredient(id: Long): List<IngredientRecord>
+    fun allIngredient(id: Int): List<IngredientRecord>
 }

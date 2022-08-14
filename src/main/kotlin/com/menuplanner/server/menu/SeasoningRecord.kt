@@ -3,18 +3,18 @@ package com.menuplanner.server.menu
 import javax.persistence.*
 
 @Entity
-@Table(name = "ingredient")
-data class IngredientRecord(
+@Table(name = "seasoning")
+data class SeasoningRecord(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ingredient_id")
-    var ingredient_id: Int = 0,
+    @Column(name = "seasoning_id")
+    var seasoning_id: Int = 0,
     @Column(name = "id")
     var id: Int = 0,
     @Column(name = "item")
     var item: String = "",
     @Column(name = "quantity")
-    var quantity: Double = 0.0,
+    var quantity: Int = 0,
     @Column(name = "scale")
     var scale: String = "",
 )

@@ -8,7 +8,7 @@ class StubMenuService : MenuService {
         return allMenu_return
     }
 
-    override fun allIngredient(id: Long): List<IngredientRecord> {
+    override fun allIngredient(id: Int): List<IngredientRecord> {
         return allIngredient_return
     }
 }

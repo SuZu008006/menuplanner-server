@@ -44,7 +44,7 @@ class SpyStubMenuRepository() : MenuRepository {
         TODO("Not yet implemented")
     }
 
-    override fun findAllById(ids: MutableIterable<Long>): MutableList<MenuRecord> {
+    override fun findAllById(ids: MutableIterable<Int>): MutableList<MenuRecord> {
         TODO("Not yet implemented")
     }
 
@@ -60,7 +60,7 @@ class SpyStubMenuRepository() : MenuRepository {
         TODO("Not yet implemented")
     }
 
-    override fun deleteAllById(ids: MutableIterable<Long>) {
+    override fun deleteAllById(ids: MutableIterable<Int>) {
         TODO("Not yet implemented")
     }
 
@@ -82,7 +82,7 @@ class SpyStubMenuRepository() : MenuRepository {
 
     override fun <S : MenuRecord?, R : Any?> findBy(
         example: Example<S>,
-        queryFunction: Function<FluentQuery.FetchableFluentQuery<S>, R>,
+        queryFunction: Function<FluentQuery.FetchableFluentQuery<S>, R>
     ): R {
         TODO("Not yet implemented")
     }
@@ -107,31 +107,31 @@ class SpyStubMenuRepository() : MenuRepository {
         TODO("Not yet implemented")
     }
 
-    override fun deleteAllByIdInBatch(ids: MutableIterable<Long>) {
+    override fun deleteAllByIdInBatch(ids: MutableIterable<Int>) {
         TODO("Not yet implemented")
     }
 
-    override fun getReferenceById(id: Long): MenuRecord {
+    override fun getReferenceById(id: Int): MenuRecord {
         TODO("Not yet implemented")
     }
 
-    override fun getById(id: Long): MenuRecord {
+    override fun getById(id: Int): MenuRecord {
         TODO("Not yet implemented")
     }
 
-    override fun getOne(id: Long): MenuRecord {
+    override fun getOne(id: Int): MenuRecord {
         TODO("Not yet implemented")
     }
 
-    override fun deleteById(id: Long) {
+    override fun deleteById(id: Int) {
         TODO("Not yet implemented")
     }
 
-    override fun existsById(id: Long): Boolean {
+    override fun existsById(id: Int): Boolean {
         TODO("Not yet implemented")
     }
 
-    override fun findById(id: Long): Optional<MenuRecord> {
+    override fun findById(id: Int): Optional<MenuRecord> {
         TODO("Not yet implemented")
     }
 }
