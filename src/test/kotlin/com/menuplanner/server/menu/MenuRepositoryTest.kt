@@ -1,6 +1,7 @@
 package com.menuplanner.server.menu
 
 import org.junit.Assert.assertEquals
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -26,10 +27,28 @@ class MenuRepositoryTest {
         val allMenu = menuRepository.findAll()
 
 
-        assertEquals(allMenu.size, 2)
-        assertEquals(allMenu[0].id, 1)
-        assertEquals(allMenu[0].title, "menuTitleOne")
-        assertEquals(allMenu[1].id, 2)
-        assertEquals(allMenu[1].title, "menuTitleTwo")
+        assertEquals(2, allMenu.size)
+        assertEquals(1, allMenu[0].id)
+        assertEquals("menuTitleOne", allMenu[0].title)
+        assertEquals(2, allMenu[1].id)
+        assertEquals("menuTitleTwo", allMenu[1].title)
+    }
+
+    @Test
+    fun `post menu data`() {
+        menuRepository.saveAll(
+            mutableListOf(
+                MenuRecord(title = "menuTitleOne"),
+                MenuRecord(title = "menuTitleTwo"),
+            )
+        )
+
+
+        val allMenu = menuRepository.findAll()
+
+
+        assertEquals(2, allMenu.size)
+        assertEquals("menuTitleOne", allMenu[0].title)
+        assertEquals("menuTitleTwo", allMenu[1].title)
     }
 }

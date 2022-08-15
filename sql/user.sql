@@ -88,7 +88,6 @@ values (1, 1, '鶏もも肉・または鶏ももから揚げ用肉', 1, '枚'),
        (43, 10, 'ミニトマト', 3, '個'),
        (44, 10, 'ねぎのみじん切り', 20, 'g');
 
-
 INSERT INTO seasoning (seasoning_id, id, item, quantity, scale)
 values (1, 1, '「丸鶏がらスープ」', 5, 'ml'),
        (2, 1, '酒', 10, 'ml'),
