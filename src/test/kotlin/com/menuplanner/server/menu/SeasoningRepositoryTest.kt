@@ -18,7 +18,7 @@ class SeasoningRepositoryTest {
     private lateinit var seasoningRepository: SeasoningRepository
 
     @Test
-    fun `return ingredient of target menu`() {
+    fun `return seasoning of target menu`() {
         entityManager.persist(SeasoningRecord(id = 1, item = "ingredientNameOne", quantity = 110, scale = "ml"))
         entityManager.persist(SeasoningRecord(id = 1, item = "ingredientNameTwo", quantity = 120, scale = "ml"))
         entityManager.persist(SeasoningRecord(id = 2, item = "ingredientName", quantity = 210, scale = "ml"))
@@ -28,12 +28,36 @@ class SeasoningRepositoryTest {
 
 
         assertEquals(allSeasoning.size, 2)
-        assertEquals(allSeasoning[0].seasoning_id, 1)
         assertEquals(allSeasoning[0].id, 1)
         assertEquals(allSeasoning[0].item, "ingredientNameOne")
         assertEquals(allSeasoning[0].quantity, 110)
         assertEquals(allSeasoning[0].scale, "ml")
-        assertEquals(allSeasoning[1].seasoning_id, 2)
+        assertEquals(allSeasoning[1].id, 1)
+        assertEquals(allSeasoning[1].item, "ingredientNameTwo")
+    }
+
+    @Test
+    fun `post seasoning of target menu`() {
+        seasoningRepository.saveAll(
+            mutableListOf(
+                SeasoningRecord(
+                    id = 1, item = "ingredientNameOne", quantity = 110, scale = "ml"
+                ),
+                SeasoningRecord(
+                    id = 1, item = "ingredientNameTwo", quantity = 120, scale = "ml"
+                )
+            )
+        )
+
+
+        val allSeasoning = seasoningRepository.findAll()
+
+
+        assertEquals(allSeasoning.size, 2)
+        assertEquals(allSeasoning[0].id, 1)
+        assertEquals(allSeasoning[0].item, "ingredientNameOne")
+        assertEquals(allSeasoning[0].quantity, 110)
+        assertEquals(allSeasoning[0].scale, "ml")
         assertEquals(allSeasoning[1].id, 1)
         assertEquals(allSeasoning[1].item, "ingredientNameTwo")
     }

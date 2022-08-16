@@ -22,7 +22,7 @@ class DefaultMenuServiceTest {
 
     @Test
     fun `allMenu() transforms MenuRecord from MenuRepository`() {
-        spyStubMenuRepository.allMenu_returnValue = listOf(
+        spyStubMenuRepository.allMenu_returnValue = mutableListOf(
             MenuRecord(title = "menuTitleOne")
         )
 
@@ -30,7 +30,7 @@ class DefaultMenuServiceTest {
         val actualMenu = menuService.allMenu()
 
 
-        val expectedMenu = listOf(
+        val expectedMenu = mutableListOf(
             MenuRecord(title = "menuTitleOne")
         )
         assertEquals(expectedMenu, actualMenu)
@@ -38,7 +38,7 @@ class DefaultMenuServiceTest {
 
     @Test
     fun `allIngredient() transforms IngredientRecord from IngredientRepository`() {
-        spyStubIngredientRepository.allIngredient_returnValue = listOf(
+        spyStubIngredientRepository.allIngredient_returnValue = mutableListOf(
             IngredientRecord(item = "ingredientItemOne", quantity = 110.0, scale = "g"),
             IngredientRecord(item = "ingredientItemTwo", quantity = 120.0, scale = "g"),
         )
@@ -47,7 +47,7 @@ class DefaultMenuServiceTest {
         val actualIngredient = menuService.allIngredient(9999)
 
 
-        val expectedIngredient = listOf(
+        val expectedIngredient = mutableListOf(
             IngredientRecord(item = "ingredientItemOne", quantity = 110.0, scale = "g"),
             IngredientRecord(item = "ingredientItemTwo", quantity = 120.0, scale = "g"),
         )

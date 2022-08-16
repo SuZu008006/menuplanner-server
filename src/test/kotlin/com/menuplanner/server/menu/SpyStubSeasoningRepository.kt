@@ -12,46 +12,46 @@ import java.util.function.Function
     "SpringDataRepositoryMethodParametersInspection", "WRONG_NULLABILITY_FOR_JAVA_OVERRIDE",
     "OVERRIDE_DEPRECATION", "SpringDataMethodInconsistencyInspection"
 )
-class SpyStubSeasoningRepository() : IngredientRepository {
-    lateinit var allSeasoning_returnValue: List<IngredientRecord>
+class SpyStubSeasoningRepository() : SeasoningRepository {
+    lateinit var allSeasoning_returnValue: List<SeasoningRecord>
 
-    override fun findDistinctById(id: Int): List<IngredientRecord> {
+    override fun findDistinctById(id: Int): List<SeasoningRecord> {
         return allSeasoning_returnValue
     }
 
-    override fun <S : IngredientRecord?> save(entity: S): S {
+    override fun <S : SeasoningRecord?> save(entity: S): S {
         TODO("Not yet implemented")
     }
 
-    override fun <S : IngredientRecord?> saveAll(entities: MutableIterable<S>): MutableList<S> {
+    override fun <S : SeasoningRecord?> saveAll(entities: MutableIterable<S>): MutableList<S> {
         TODO("Not yet implemented")
     }
 
-    override fun findAll(): MutableList<IngredientRecord> {
+    override fun findAll(): MutableList<SeasoningRecord> {
         TODO("Not yet implemented")
     }
 
-    override fun findAll(sort: Sort): MutableList<IngredientRecord> {
+    override fun findAll(sort: Sort): MutableList<SeasoningRecord> {
         TODO("Not yet implemented")
     }
 
-    override fun <S : IngredientRecord?> findAll(example: Example<S>): MutableList<S> {
+    override fun <S : SeasoningRecord?> findAll(example: Example<S>): MutableList<S> {
         TODO("Not yet implemented")
     }
 
-    override fun <S : IngredientRecord?> findAll(example: Example<S>, sort: Sort): MutableList<S> {
+    override fun <S : SeasoningRecord?> findAll(example: Example<S>, sort: Sort): MutableList<S> {
         TODO("Not yet implemented")
     }
 
-    override fun findAll(pageable: Pageable): Page<IngredientRecord> {
+    override fun findAll(pageable: Pageable): Page<SeasoningRecord> {
         TODO("Not yet implemented")
     }
 
-    override fun <S : IngredientRecord?> findAll(example: Example<S>, pageable: Pageable): Page<S> {
+    override fun <S : SeasoningRecord?> findAll(example: Example<S>, pageable: Pageable): Page<S> {
         TODO("Not yet implemented")
     }
 
-    override fun findAllById(ids: MutableIterable<Int>): MutableList<IngredientRecord> {
+    override fun findAllById(ids: MutableIterable<Int>): MutableList<SeasoningRecord> {
         TODO("Not yet implemented")
     }
 
@@ -59,11 +59,11 @@ class SpyStubSeasoningRepository() : IngredientRepository {
         TODO("Not yet implemented")
     }
 
-    override fun <S : IngredientRecord?> count(example: Example<S>): Long {
+    override fun <S : SeasoningRecord?> count(example: Example<S>): Long {
         TODO("Not yet implemented")
     }
 
-    override fun delete(entity: IngredientRecord) {
+    override fun delete(entity: SeasoningRecord) {
         TODO("Not yet implemented")
     }
 
@@ -71,7 +71,7 @@ class SpyStubSeasoningRepository() : IngredientRepository {
         TODO("Not yet implemented")
     }
 
-    override fun deleteAll(entities: MutableIterable<IngredientRecord>) {
+    override fun deleteAll(entities: MutableIterable<SeasoningRecord>) {
         TODO("Not yet implemented")
     }
 
@@ -79,15 +79,15 @@ class SpyStubSeasoningRepository() : IngredientRepository {
         TODO("Not yet implemented")
     }
 
-    override fun <S : IngredientRecord?> findOne(example: Example<S>): Optional<S> {
+    override fun <S : SeasoningRecord?> findOne(example: Example<S>): Optional<S> {
         TODO("Not yet implemented")
     }
 
-    override fun <S : IngredientRecord?> exists(example: Example<S>): Boolean {
+    override fun <S : SeasoningRecord?> exists(example: Example<S>): Boolean {
         TODO("Not yet implemented")
     }
 
-    override fun <S : IngredientRecord?, R : Any?> findBy(
+    override fun <S : SeasoningRecord?, R : Any?> findBy(
         example: Example<S>,
         queryFunction: Function<FluentQuery.FetchableFluentQuery<S>, R>
     ): R {
@@ -98,15 +98,15 @@ class SpyStubSeasoningRepository() : IngredientRepository {
         TODO("Not yet implemented")
     }
 
-    override fun <S : IngredientRecord?> saveAndFlush(entity: S): S {
+    override fun <S : SeasoningRecord?> saveAndFlush(entity: S): S {
         TODO("Not yet implemented")
     }
 
-    override fun <S : IngredientRecord?> saveAllAndFlush(entities: MutableIterable<S>): MutableList<S> {
+    override fun <S : SeasoningRecord?> saveAllAndFlush(entities: MutableIterable<S>): MutableList<S> {
         TODO("Not yet implemented")
     }
 
-    override fun deleteAllInBatch(entities: MutableIterable<IngredientRecord>) {
+    override fun deleteAllInBatch(entities: MutableIterable<SeasoningRecord>) {
         TODO("Not yet implemented")
     }
 
@@ -118,15 +118,15 @@ class SpyStubSeasoningRepository() : IngredientRepository {
         TODO("Not yet implemented")
     }
 
-    override fun getReferenceById(id: Int): IngredientRecord {
+    override fun getReferenceById(id: Int): SeasoningRecord {
         TODO("Not yet implemented")
     }
 
-    override fun getById(id: Int): IngredientRecord {
+    override fun getById(id: Int): SeasoningRecord {
         TODO("Not yet implemented")
     }
 
-    override fun getOne(id: Int): IngredientRecord {
+    override fun getOne(id: Int): SeasoningRecord {
         TODO("Not yet implemented")
     }
 
@@ -138,7 +138,7 @@ class SpyStubSeasoningRepository() : IngredientRepository {
         TODO("Not yet implemented")
     }
 
-    override fun findById(id: Int): Optional<IngredientRecord> {
+    override fun findById(id: Int): Optional<SeasoningRecord> {
         TODO("Not yet implemented")
     }
 }

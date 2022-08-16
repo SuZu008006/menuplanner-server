@@ -19,7 +19,7 @@ class MenuRepositoryTest {
     private lateinit var menuRepository: MenuRepository
 
     @Test
-    fun `return all menu data`() {
+    fun `return all menu list`() {
         entityManager.persist(MenuRecord(title = "menuTitleOne"))
         entityManager.persist(MenuRecord(title = "menuTitleTwo"))
 
@@ -35,7 +35,7 @@ class MenuRepositoryTest {
     }
 
     @Test
-    fun `post menu data`() {
+    fun `post menu list`() {
         menuRepository.saveAll(
             mutableListOf(
                 MenuRecord(title = "menuTitleOne"),

@@ -27,17 +27,52 @@ class IngredientRepositoryTest {
         val allIngredient = ingredientRepository.findDistinctById(1)
 
 
-        assertEquals(allIngredient.size, 2)
-        assertEquals(allIngredient[0].ingredient_id, 1)
-        assertEquals(allIngredient[0].id, 1)
-        assertEquals(allIngredient[0].item, "ingredientNameOne")
-        assertEquals(allIngredient[0].quantity, 0.25, 0.001)
-        assertEquals(allIngredient[0].scale, "g")
-        assertEquals(allIngredient[1].ingredient_id, 2)
-        assertEquals(allIngredient[1].id, 1)
-        assertEquals(allIngredient[1].item, "ingredientNameTwo")
-        assertEquals(allIngredient[1].quantity, 0.5, 0.001)
-        assertEquals(allIngredient[1].scale, "g")
+        assertEquals(2, allIngredient.size)
 
+        assertEquals(1, allIngredient[0].id)
+        assertEquals("ingredientNameOne", allIngredient[0].item)
+        assertEquals(0.25, allIngredient[0].quantity, 0.001)
+        assertEquals("g", allIngredient[0].scale)
+
+        assertEquals(1, allIngredient[1].id)
+        assertEquals("ingredientNameTwo", allIngredient[1].item)
+        assertEquals(0.5, allIngredient[1].quantity, 0.001)
+        assertEquals("g", allIngredient[1].scale)
+    }
+
+    @Test
+    fun `post ingredient of target menu`() {
+        ingredientRepository.saveAll(
+            mutableListOf(
+                IngredientRecord(
+                    id = 1,
+                    item = "ingredientNameOne",
+                    quantity = 0.25,
+                    scale = "g"
+                ),
+                IngredientRecord(
+                    id = 1,
+                    item = "ingredientNameTwo",
+                    quantity = 0.5,
+                    scale = "g"
+                )
+            )
+        )
+
+
+        val allIngredient = ingredientRepository.findAll()
+
+
+        assertEquals(2, allIngredient.size)
+
+        assertEquals(1, allIngredient[0].id)
+        assertEquals("ingredientNameOne", allIngredient[0].item)
+        assertEquals(0.25, allIngredient[0].quantity, 0.001)
+        assertEquals("g", allIngredient[0].scale)
+
+        assertEquals(1, allIngredient[1].id)
+        assertEquals("ingredientNameTwo", allIngredient[1].item)
+        assertEquals(0.5, allIngredient[1].quantity, 0.001)
+        assertEquals("g", allIngredient[1].scale)
     }
 }

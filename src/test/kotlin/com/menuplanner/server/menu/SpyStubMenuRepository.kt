@@ -11,8 +11,9 @@ import java.util.function.Function
 @Suppress("SpringDataRepositoryMethodParametersInspection", "WRONG_NULLABILITY_FOR_JAVA_OVERRIDE",
     "OVERRIDE_DEPRECATION", "SpringDataMethodInconsistencyInspection")
 class SpyStubMenuRepository() : MenuRepository {
-    lateinit var allMenu_returnValue: List<MenuRecord>
-    override fun findAll(): List<MenuRecord> {
+    lateinit var allMenu_returnValue: MutableList<MenuRecord>
+
+    override fun findAll(): MutableList<MenuRecord> {
         return allMenu_returnValue
     }
 
@@ -36,11 +37,11 @@ class SpyStubMenuRepository() : MenuRepository {
         TODO("Not yet implemented")
     }
 
-    override fun <S : MenuRecord?> save(entity: S): S {
+    override fun <S : MenuRecord?> saveAll(entities: MutableIterable<S>): MutableList<S> {
         TODO("Not yet implemented")
     }
 
-    override fun <S : MenuRecord?> saveAll(entities: MutableIterable<S>): MutableList<S> {
+    override fun <S : MenuRecord?> save(entity: S): S {
         TODO("Not yet implemented")
     }
 
@@ -134,4 +135,5 @@ class SpyStubMenuRepository() : MenuRepository {
     override fun findById(id: Int): Optional<MenuRecord> {
         TODO("Not yet implemented")
     }
+
 }
