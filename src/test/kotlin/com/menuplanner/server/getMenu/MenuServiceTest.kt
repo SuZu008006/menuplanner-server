@@ -1,10 +1,14 @@
-package com.menuplanner.server.menu
+package com.menuplanner.server.getMenu
 
+import com.menuplanner.server.getMenu.entity.IngredientRecord
+import com.menuplanner.server.getMenu.entity.MenuRecord
+import com.menuplanner.server.getMenu.repository.SpyStubIngredientRepository
+import com.menuplanner.server.getMenu.repository.SpyStubMenuRepository
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-class DefaultMenuServiceTest {
+class MenuServiceTest {
     private lateinit var spyStubMenuRepository: SpyStubMenuRepository
     private lateinit var spyStubIngredientRepository: SpyStubIngredientRepository
     private lateinit var menuService: DefaultMenuService

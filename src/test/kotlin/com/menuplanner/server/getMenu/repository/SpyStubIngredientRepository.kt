@@ -1,5 +1,6 @@
-package com.menuplanner.server.menu
+package com.menuplanner.server.getMenu.repository
 
+import com.menuplanner.server.getMenu.entity.IngredientRecord
 import org.springframework.data.domain.Example
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable

@@ -1,7 +1,8 @@
-package com.menuplanner.server.menu
+package com.menuplanner.server.getMenu.repository
 
+import com.menuplanner.server.getMenu.entity.MenuRecord
+import com.menuplanner.server.getMenu.repository.MenuRepository
 import org.junit.Assert.assertEquals
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired

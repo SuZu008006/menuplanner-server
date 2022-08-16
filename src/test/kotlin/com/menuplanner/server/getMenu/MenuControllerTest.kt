@@ -1,5 +1,7 @@
-package com.menuplanner.server.menu
+package com.menuplanner.server.getMenu
 
+import com.menuplanner.server.getMenu.entity.IngredientRecord
+import com.menuplanner.server.getMenu.entity.MenuRecord
 import org.hamcrest.CoreMatchers.equalTo
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

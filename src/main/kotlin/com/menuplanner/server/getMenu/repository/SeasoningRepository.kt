@@ -1,5 +1,6 @@
-package com.menuplanner.server.menu
+package com.menuplanner.server.getMenu.repository
 
+import com.menuplanner.server.getMenu.entity.SeasoningRecord
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 

@@ -1,5 +1,9 @@
-package com.menuplanner.server.menu
+package com.menuplanner.server.getMenu
 
+import com.menuplanner.server.getMenu.entity.IngredientRecord
+import com.menuplanner.server.getMenu.repository.IngredientRepository
+import com.menuplanner.server.getMenu.entity.MenuRecord
+import com.menuplanner.server.getMenu.repository.MenuRepository
 import org.springframework.stereotype.Service
 
 @Service

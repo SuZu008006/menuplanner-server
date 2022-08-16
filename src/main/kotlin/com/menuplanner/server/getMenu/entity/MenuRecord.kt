@@ -1,4 +1,4 @@
-package com.menuplanner.server.menu
+package com.menuplanner.server.getMenu.entity
 
 import javax.persistence.*
 
