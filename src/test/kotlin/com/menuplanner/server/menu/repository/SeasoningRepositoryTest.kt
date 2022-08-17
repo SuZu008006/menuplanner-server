@@ -1,7 +1,6 @@
-package com.menuplanner.server.getMenu.repository
+package com.menuplanner.server.menu.repository
 
-import com.menuplanner.server.getMenu.entity.SeasoningRecord
-import com.menuplanner.server.getMenu.repository.SeasoningRepository
+import com.menuplanner.server.menu.entity.SeasoningRecord
 import org.junit.Assert.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.runner.RunWith

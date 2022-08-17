@@ -1,7 +1,6 @@
-package com.menuplanner.server.getMenu.repository
+package com.menuplanner.server.menu.repository
 
-import com.menuplanner.server.getMenu.entity.IngredientRecord
-import com.menuplanner.server.getMenu.repository.IngredientRepository
+import com.menuplanner.server.menu.entity.IngredientRecord
 import org.junit.Assert.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.runner.RunWith

@@ -1,7 +1,7 @@
-package com.menuplanner.server.getMenu
+package com.menuplanner.server.menu
 
-import com.menuplanner.server.getMenu.entity.IngredientRecord
-import com.menuplanner.server.getMenu.entity.MenuRecord
+import com.menuplanner.server.menu.entity.IngredientRecord
+import com.menuplanner.server.menu.entity.MenuRecord
 
 class StubMenuService : MenuService {
     var allMenu_return: List<MenuRecord> = emptyList()

@@ -1,6 +1,6 @@
-package com.menuplanner.server.getMenu.repository
+package com.menuplanner.server.menu.repository
 
-import com.menuplanner.server.getMenu.entity.SeasoningRecord
+import com.menuplanner.server.menu.entity.SeasoningRecord
 import org.springframework.data.domain.Example
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable

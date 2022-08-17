@@ -1,6 +1,6 @@
-package com.menuplanner.server.getMenu.repository
+package com.menuplanner.server.menu.repository
 
-import com.menuplanner.server.getMenu.entity.MenuRecord
+import com.menuplanner.server.menu.entity.IngredientRecord
 import org.springframework.data.domain.Example
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -11,42 +11,46 @@ import java.util.function.Function
 
 @Suppress("SpringDataRepositoryMethodParametersInspection", "WRONG_NULLABILITY_FOR_JAVA_OVERRIDE",
     "OVERRIDE_DEPRECATION", "SpringDataMethodInconsistencyInspection")
-class SpyStubMenuRepository() : MenuRepository {
-    lateinit var allMenu_returnValue: MutableList<MenuRecord>
+class SpyStubIngredientRepository() : IngredientRepository {
+    lateinit var allIngredient_returnValue: List<IngredientRecord>
 
-    override fun findAll(): MutableList<MenuRecord> {
-        return allMenu_returnValue
+    override fun findDistinctById(id: Int): List<IngredientRecord> {
+        return allIngredient_returnValue
     }
 
-    override fun findAll(sort: Sort): MutableList<MenuRecord> {
+    override fun <S : IngredientRecord?> save(entity: S): S {
         TODO("Not yet implemented")
     }
 
-    override fun <S : MenuRecord?> findAll(example: Example<S>): MutableList<S> {
+    override fun <S : IngredientRecord?> saveAll(entities: MutableIterable<S>): MutableList<S> {
         TODO("Not yet implemented")
     }
 
-    override fun <S : MenuRecord?> findAll(example: Example<S>, sort: Sort): MutableList<S> {
+    override fun findAll(): MutableList<IngredientRecord> {
         TODO("Not yet implemented")
     }
 
-    override fun findAll(pageable: Pageable): Page<MenuRecord> {
+    override fun findAll(sort: Sort): MutableList<IngredientRecord> {
         TODO("Not yet implemented")
     }
 
-    override fun <S : MenuRecord?> findAll(example: Example<S>, pageable: Pageable): Page<S> {
+    override fun <S : IngredientRecord?> findAll(example: Example<S>): MutableList<S> {
         TODO("Not yet implemented")
     }
 
-    override fun <S : MenuRecord?> saveAll(entities: MutableIterable<S>): MutableList<S> {
+    override fun <S : IngredientRecord?> findAll(example: Example<S>, sort: Sort): MutableList<S> {
         TODO("Not yet implemented")
     }
 
-    override fun <S : MenuRecord?> save(entity: S): S {
+    override fun findAll(pageable: Pageable): Page<IngredientRecord> {
         TODO("Not yet implemented")
     }
 
-    override fun findAllById(ids: MutableIterable<Int>): MutableList<MenuRecord> {
+    override fun <S : IngredientRecord?> findAll(example: Example<S>, pageable: Pageable): Page<S> {
+        TODO("Not yet implemented")
+    }
+
+    override fun findAllById(ids: MutableIterable<Int>): MutableList<IngredientRecord> {
         TODO("Not yet implemented")
     }
 
@@ -54,11 +58,11 @@ class SpyStubMenuRepository() : MenuRepository {
         TODO("Not yet implemented")
     }
 
-    override fun <S : MenuRecord?> count(example: Example<S>): Long {
+    override fun <S : IngredientRecord?> count(example: Example<S>): Long {
         TODO("Not yet implemented")
     }
 
-    override fun delete(entity: MenuRecord) {
+    override fun delete(entity: IngredientRecord) {
         TODO("Not yet implemented")
     }
 
@@ -66,7 +70,7 @@ class SpyStubMenuRepository() : MenuRepository {
         TODO("Not yet implemented")
     }
 
-    override fun deleteAll(entities: MutableIterable<MenuRecord>) {
+    override fun deleteAll(entities: MutableIterable<IngredientRecord>) {
         TODO("Not yet implemented")
     }
 
@@ -74,15 +78,15 @@ class SpyStubMenuRepository() : MenuRepository {
         TODO("Not yet implemented")
     }
 
-    override fun <S : MenuRecord?> findOne(example: Example<S>): Optional<S> {
+    override fun <S : IngredientRecord?> findOne(example: Example<S>): Optional<S> {
         TODO("Not yet implemented")
     }
 
-    override fun <S : MenuRecord?> exists(example: Example<S>): Boolean {
+    override fun <S : IngredientRecord?> exists(example: Example<S>): Boolean {
         TODO("Not yet implemented")
     }
 
-    override fun <S : MenuRecord?, R : Any?> findBy(
+    override fun <S : IngredientRecord?, R : Any?> findBy(
         example: Example<S>,
         queryFunction: Function<FluentQuery.FetchableFluentQuery<S>, R>
     ): R {
@@ -93,15 +97,15 @@ class SpyStubMenuRepository() : MenuRepository {
         TODO("Not yet implemented")
     }
 
-    override fun <S : MenuRecord?> saveAndFlush(entity: S): S {
+    override fun <S : IngredientRecord?> saveAndFlush(entity: S): S {
         TODO("Not yet implemented")
     }
 
-    override fun <S : MenuRecord?> saveAllAndFlush(entities: MutableIterable<S>): MutableList<S> {
+    override fun <S : IngredientRecord?> saveAllAndFlush(entities: MutableIterable<S>): MutableList<S> {
         TODO("Not yet implemented")
     }
 
-    override fun deleteAllInBatch(entities: MutableIterable<MenuRecord>) {
+    override fun deleteAllInBatch(entities: MutableIterable<IngredientRecord>) {
         TODO("Not yet implemented")
     }
 
@@ -113,15 +117,15 @@ class SpyStubMenuRepository() : MenuRepository {
         TODO("Not yet implemented")
     }
 
-    override fun getReferenceById(id: Int): MenuRecord {
+    override fun getReferenceById(id: Int): IngredientRecord {
         TODO("Not yet implemented")
     }
 
-    override fun getById(id: Int): MenuRecord {
+    override fun getById(id: Int): IngredientRecord {
         TODO("Not yet implemented")
     }
 
-    override fun getOne(id: Int): MenuRecord {
+    override fun getOne(id: Int): IngredientRecord {
         TODO("Not yet implemented")
     }
 
@@ -133,8 +137,7 @@ class SpyStubMenuRepository() : MenuRepository {
         TODO("Not yet implemented")
     }
 
-    override fun findById(id: Int): Optional<MenuRecord> {
+    override fun findById(id: Int): Optional<IngredientRecord> {
         TODO("Not yet implemented")
     }
-
 }
