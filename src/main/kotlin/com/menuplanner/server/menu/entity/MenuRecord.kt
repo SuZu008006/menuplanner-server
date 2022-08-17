@@ -7,7 +7,13 @@ import com.menuplanner.server.menu.entity.MenuImpl as MenuImpl
 @Table(name = "menu")
 data class MenuRecord(
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+        name = "id",
+        sequenceName = "id_seq",
+        initialValue = 1,
+        allocationSize = 1,
+    )
     @Column(name = "id")
     override var id: Int = 0,
     @Column(name = "title")
