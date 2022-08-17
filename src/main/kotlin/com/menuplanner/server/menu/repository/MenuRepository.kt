@@ -6,7 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface MenuRepository : JpaRepository<MenuRecord, Int> {
-    override fun findAll(): MutableList<MenuRecord>
-
-    override fun <S : MenuRecord?> saveAll(entities: MutableIterable<S>): MutableList<S>
+    fun findDistinctById(id: Int): MenuRecord
 }

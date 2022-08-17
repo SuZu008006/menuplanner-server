@@ -43,10 +43,10 @@ class MenuServiceTest {
         val actualMenu = menuService.allMenu()
 
 
-        val expectedMenu = mutableListOf(
-            MenuRecord(id = 1, title = "menuTitleOne")
+        val expectedMenu = listOf(
+            MenuRecord(title = "menuTitleOne")
         )
-        assertEquals(expectedMenu, actualMenu)
+        assertEquals(expectedMenu[0].title, actualMenu[0].title)
     }
 
     @Test
@@ -80,10 +80,24 @@ class MenuServiceTest {
         val actualIngredient = menuService.allIngredient(1)
 
 
-        val expectedIngredient = mutableListOf(
-            IngredientRecord(id = 1, ingredient_id = 1, item = "ingredientItemOne", quantity = 110.0, scale = "g"),
-            IngredientRecord(id = 1, ingredient_id = 2, item = "ingredientItemTwo", quantity = 120.0, scale = "g"),
+        val expectedIngredient = listOf(
+            IngredientRecord(
+                id = 1,
+                item = "ingredientItemOne",
+                quantity = 110.0,
+                scale = "g"
+            ),
+            IngredientRecord(
+                id = 1,
+                item = "ingredientItemTwo",
+                quantity = 120.0,
+                scale = "g"
+            ),
         )
-        assertEquals(expectedIngredient, actualIngredient)
+        assertEquals(expectedIngredient[0].id, actualIngredient[0].id)
+        assertEquals(expectedIngredient[0].item, actualIngredient[0].item)
+        assertEquals(expectedIngredient[0].quantity, actualIngredient[0].quantity)
+        assertEquals(expectedIngredient[0].quantity, actualIngredient[0].quantity)
+        assertEquals(expectedIngredient[0].scale, actualIngredient[0].scale)
     }
 }
