@@ -11,21 +11,21 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 
 class MenuControllerTest {
-    private lateinit var stubMenuService: StubMenuService
+    private lateinit var spyStubMenuService: SpyStubMenuService
 
     @BeforeEach
     fun setUp() {
-        stubMenuService = StubMenuService()
+        spyStubMenuService = SpyStubMenuService()
     }
 
     @Test
     fun `when there are menu, menu endpoint returns list of menu`() {
-        stubMenuService.allMenu_return = listOf(
+        spyStubMenuService.allMenu_return = listOf(
             MenuRecord(title = "menuTitleOne")
         )
 
 
-        standaloneSetup(MenuController(stubMenuService))
+        standaloneSetup(MenuController(spyStubMenuService))
             .build()
             .perform(get("/api/menu"))
 
@@ -36,7 +36,7 @@ class MenuControllerTest {
 
     @Test
     fun `when there are ingredient, menu_{menuCode} endpoint returns list of ingredient`() {
-        stubMenuService.allIngredient_return = listOf(
+        spyStubMenuService.allIngredient_return = listOf(
             IngredientRecord(item = "ingredientItemOne", quantity = 110.0, scale = "g"),
             IngredientRecord(item = "ingredientItemTwo", quantity = 120.0, scale = "g"),
         )
@@ -44,7 +44,7 @@ class MenuControllerTest {
         val MENU_CODE = 9999
 
 
-        standaloneSetup(MenuController(stubMenuService))
+        standaloneSetup(MenuController(spyStubMenuService))
             .build()
             .perform(get("/api/menu/${MENU_CODE}"))
 

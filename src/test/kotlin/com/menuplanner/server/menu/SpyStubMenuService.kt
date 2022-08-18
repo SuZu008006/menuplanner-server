@@ -3,7 +3,7 @@ package com.menuplanner.server.menu
 import com.menuplanner.server.menu.entity.IngredientRecord
 import com.menuplanner.server.menu.entity.MenuRecord
 
-class StubMenuService : MenuService {
+class SpyStubMenuService : MenuService {
     var allMenu_return: List<MenuRecord> = emptyList()
     var allIngredient_return: List<IngredientRecord> = emptyList()
 

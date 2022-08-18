@@ -26,6 +26,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     runtimeOnly("org.postgresql:postgresql")
     implementation("com.h2database:h2")
+
+    implementation("com.google.code.gson:gson:2.9.1")
 }
 
 tasks.withType<KotlinCompile> {
