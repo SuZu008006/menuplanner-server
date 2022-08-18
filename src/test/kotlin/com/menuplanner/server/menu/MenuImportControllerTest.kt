@@ -23,20 +23,37 @@ class MenuImportControllerTest {
         menuImportController = MenuImportController(spyStubMenuImportService)
 
         val jsonMenuStruct = Gson().toJson(
-            MenuStruct(
-                MenuRecord(title = "titleOne"),
-                listOf(
-                    IngredientRecord(
-                        item = "itemOneOne",
-                        quantity = 1.1,
-                        scale = "scaleOneOne"
+            listOf(
+                MenuStruct(
+                    MenuRecord(title = "titleOne"),
+                    listOf(
+                        IngredientRecord(
+                            item = "itemOneOne",
+                            quantity = 1.1,
+                            scale = "scaleOneOne"
+                        ),
+                        IngredientRecord(
+                            item = "itemOneTwo",
+                            quantity = 1.2,
+                            scale = "scaleOneTwo"
+                        ),
                     ),
-                    IngredientRecord(
-                        item = "itemOneTwo",
-                        quantity = 1.2,
-                        scale = "scaleOneTwo"
+                ),
+                MenuStruct(
+                    MenuRecord(title = "titleTwo"),
+                    listOf(
+                        IngredientRecord(
+                            item = "ingredientItemTwoOne",
+                            quantity = 2.1,
+                            scale = "scaleTwoOne"
+                        ),
+                        IngredientRecord(
+                            item = "ingredientItemTwoTwo",
+                            quantity = 2.2,
+                            scale = "scaleTwoTwo"
+                        ),
                     ),
-                )
+                ),
             )
         )
 

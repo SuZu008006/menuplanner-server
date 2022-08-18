@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.*
 class MenuImportController(private val menuImportService: MenuImportService) {
     @PostMapping("/import", consumes = [APPLICATION_JSON_VALUE])
     @ResponseStatus(value = CREATED)
-    fun importMenuStruct(@RequestBody menuStruct: MenuStruct) {
-        println(menuStruct)
-        menuImportService.importMenu(menuStruct)
+    fun importMenuStruct(@RequestBody menuStructList: List<MenuStruct>) {
+        menuImportService.importMenu(menuStructList)
     }
 }

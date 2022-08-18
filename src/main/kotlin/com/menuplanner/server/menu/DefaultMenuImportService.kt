@@ -11,28 +11,32 @@ class DefaultMenuImportService(
     private val menuRepository: MenuRepository,
     private val ingredientRepository: IngredientRepository,
 ) : MenuImportService {
-    override fun importMenu(menuStruct: MenuStruct): MenuStruct {
-        menuRepository.save(menuStruct.menuRecord)
+    override fun importMenu(menuStructList: List<MenuStruct>): List<MenuStruct> {
+        return menuStructList.map {
+            menuRepository.save(it.menuRecord)
 
-        val importMenuStruct = menuStruct.ingredientRecord.map {
-            IngredientRecord(
-                it.ingredient_id,
-                menuStruct.menuRecord.id,
-                it.item,
-                it.quantity,
-                it.scale,
-            )
+            val importMenuStruct = it.ingredientRecord.map { ingredientRecord ->
+                IngredientRecord(
+                    ingredientRecord.ingredient_id,
+                    it.menuRecord.id,
+                    ingredientRecord.item,
+                    ingredientRecord.quantity,
+                    ingredientRecord.scale,
+                )
+            }
+
+            ingredientRepository.saveAll(importMenuStruct)
+
+            val menuRecord =
+                menuRepository.findDistinctById(it.menuRecord.id)
+            val ingredientRecordList =
+                ingredientRepository.findDistinctById(it.menuRecord.id)
+
+            return@map MenuStruct(menuRecord, ingredientRecordList)
         }
-
-        ingredientRepository.saveAll(importMenuStruct)
-
-        val menuRecordList = menuRepository.findDistinctById(menuStruct.menuRecord.id)
-        val ingredientRecordList = ingredientRepository.findDistinctById(menuStruct.menuRecord.id)
-
-        return MenuStruct(menuRecordList, ingredientRecordList)
     }
 }
 
 interface MenuImportService {
-    fun importMenu(menuStruct: MenuStruct): MenuStruct
+    fun importMenu(menuStructList: List<MenuStruct>): List<MenuStruct>
 }
