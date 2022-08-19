@@ -13,8 +13,23 @@ class MenuController(private val menuService: MenuService) {
         return menuService.getSevenDaysMenu()
     }
 
-    @GetMapping("/{menuCode}")
-    fun getAllIngredient(@PathVariable menuCode: Int): List<IngredientRecord> {
-        return menuService.allIngredient(menuCode)
+    @GetMapping("/{id}")
+    fun getAllIngredient(@PathVariable id: Int): List<IngredientRecord> {
+        return menuService.getTargetIngredient(id)
+    }
+
+    @GetMapping("/summary/{id1}+{id2}+{id3}+{id4}+{id5}+{id6}+{id7}")
+    fun getSevenDaysIngredient(
+        @PathVariable id1: Int,
+        @PathVariable id2: Int,
+        @PathVariable id3: Int,
+        @PathVariable id4: Int,
+        @PathVariable id5: Int,
+        @PathVariable id6: Int,
+        @PathVariable id7: Int,
+    ): List<IngredientRecord> {
+        return menuService.getSevenDaysIngredient(
+            listOf(id1, id2, id3, id4, id5, id6, id7)
+        )
     }
 }

@@ -20,7 +20,7 @@ class MenuControllerTest {
 
     @Test
     fun `when there are menu, menu endpoint returns list of menu`() {
-        spyStubMenuService.allMenu_return = listOf(
+        spyStubMenuService.menu_return = listOf(
             MenuRecord(title = "menuTitleOne")
         )
 
@@ -35,18 +35,26 @@ class MenuControllerTest {
     }
 
     @Test
-    fun `when there are ingredient, menu_{menuCode} endpoint returns list of ingredient`() {
-        spyStubMenuService.allIngredient_return = listOf(
-            IngredientRecord(item = "ingredientItemOne", quantity = 110.0, scale = "g"),
-            IngredientRecord(item = "ingredientItemTwo", quantity = 120.0, scale = "g"),
+    fun `when there are ingredient, menu_{id} endpoint returns list of ingredient`() {
+        spyStubMenuService.ingredient_return = listOf(
+            IngredientRecord(
+                item = "ingredientItemOne",
+                quantity = 110.0,
+                scale = "g"
+            ),
+            IngredientRecord(
+                item = "ingredientItemTwo",
+                quantity = 120.0,
+                scale = "g"
+            ),
         )
 
-        val MENU_CODE = 9999
+        val ID = 9999
 
 
         standaloneSetup(MenuController(spyStubMenuService))
             .build()
-            .perform(get("/api/menu/${MENU_CODE}"))
+            .perform(get("/api/menu/${ID}"))
 
 
             .andExpect(status().isOk)
@@ -56,5 +64,30 @@ class MenuControllerTest {
             .andExpect(jsonPath("$[1].item", equalTo("ingredientItemTwo")))
             .andExpect(jsonPath("$[1].quantity", equalTo(120.0)))
             .andExpect(jsonPath("$[1].scale", equalTo("g")))
+    }
+
+    @Test
+    fun `when there are ingredient, menu_{id1}+{id2}+{id3}+{id4}+{id5}+{id6}+{id7} endpoint returns list of ingredient`() {
+        spyStubMenuService.sevenDaysIngredient_return = listOf(
+            IngredientRecord(item = "ingredientItemOne", quantity = 1.0, scale = "g"),
+        )
+
+        val idList = listOf(1111, 2222, 3333, 4444, 5555, 6666, 7777)
+        var sevenDaysIdList = ""
+        idList.forEach {
+            sevenDaysIdList = "${sevenDaysIdList}+${it}"
+        }
+        sevenDaysIdList = sevenDaysIdList.drop(1)
+
+
+        standaloneSetup(MenuController(spyStubMenuService))
+            .build()
+            .perform(get("/api/menu/summary/${sevenDaysIdList}"))
+
+
+            .andExpect(status().isOk)
+            .andExpect(jsonPath("$[0].item", equalTo("ingredientItemOne")))
+            .andExpect(jsonPath("$[0].quantity", equalTo(1.0)))
+            .andExpect(jsonPath("$[0].scale", equalTo("g")))
     }
 }

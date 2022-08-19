@@ -12,15 +12,28 @@ class DefaultMenuService(
     private val ingredientRepository: IngredientRepository,
 ) : MenuService {
     override fun getSevenDaysMenu(): List<MenuRecord> {
-        return menuRepository.findAll().shuffled().slice(0..6)
+        return menuRepository.findAll()
+            .shuffled().slice(0..6)
     }
 
-    override fun allIngredient(id: Int): List<IngredientRecord> {
+    override fun getTargetIngredient(id: Int): List<IngredientRecord> {
         return ingredientRepository.findDistinctById(id)
+    }
+
+    override fun getSevenDaysIngredient(idList: List<Int>): List<IngredientRecord> {
+        val ingredientList: MutableList<IngredientRecord> = arrayListOf()
+
+        idList.forEach {
+            ingredientList
+                .addAll(ingredientRepository.findDistinctById(it))
+        }
+
+        return ingredientList
     }
 }
 
 interface MenuService {
     fun getSevenDaysMenu(): List<MenuRecord>
-    fun allIngredient(id: Int): List<IngredientRecord>
+    fun getTargetIngredient(id: Int): List<IngredientRecord>
+    fun getSevenDaysIngredient(idList: List<Int>): List<IngredientRecord>
 }
