@@ -11,8 +11,8 @@ class DefaultMenuService(
     private val menuRepository: MenuRepository,
     private val ingredientRepository: IngredientRepository,
 ) : MenuService {
-    override fun allMenu(): List<MenuRecord> {
-        return menuRepository.findAll()
+    override fun getSevenDaysMenu(): List<MenuRecord> {
+        return menuRepository.findAll().shuffled().slice(0..6)
     }
 
     override fun allIngredient(id: Int): List<IngredientRecord> {
@@ -21,6 +21,6 @@ class DefaultMenuService(
 }
 
 interface MenuService {
-    fun allMenu(): List<MenuRecord>
+    fun getSevenDaysMenu(): List<MenuRecord>
     fun allIngredient(id: Int): List<IngredientRecord>
 }

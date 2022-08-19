@@ -38,6 +38,6 @@ SELECT *
 FROM seasoning;
 
 -- table削除
-DROP TABLE menu;
 DROP TABLE ingredient;
 DROP TABLE seasoning;
+DROP TABLE menu;

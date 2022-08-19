@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 class MenuController(private val menuService: MenuService) {
     @GetMapping
     fun getAllMenu(): List<MenuRecord> {
-        return menuService.allMenu()
+        return menuService.getSevenDaysMenu()
     }
 
     @GetMapping("/{menuCode}")

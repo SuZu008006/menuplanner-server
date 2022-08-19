@@ -37,16 +37,40 @@ class MenuServiceTest {
 
     @Test
     fun `allMenu() transforms MenuRecord from MenuRepository`() {
-        entityManager.persist(MenuRecord(title = "menuTitleOne"))
-
-
-        val actualMenu = menuService.allMenu()
-
-
-        val expectedMenu = listOf(
-            MenuRecord(title = "menuTitleOne")
+        val menuRecordList = listOf(
+            MenuRecord(id = 1, title = "menuTitleOne"),
+            MenuRecord(id = 2, title = "menuTitleTwo"),
+            MenuRecord(id = 3, title = "menuTitleThree"),
+            MenuRecord(id = 4, title = "menuTitleFour"),
+            MenuRecord(id = 5, title = "menuTitleFive"),
+            MenuRecord(id = 6, title = "menuTitleSix"),
+            MenuRecord(id = 7, title = "menuTitleSeven"),
+            MenuRecord(id = 8, title = "menuTitleEight"),
         )
-        assertEquals(expectedMenu[0].title, actualMenu[0].title)
+        menuRecordList.forEach {
+            entityManager.persist(MenuRecord(title = it.title))
+        }
+
+
+        val actualMenu = menuService.getSevenDaysMenu()
+
+
+        assertEquals(7, actualMenu.size)
+
+        fun includeMenuRecordCount(expectedMenu: List<MenuRecord>, actualMenu: List<MenuRecord>): Int {
+            var count = 0
+
+            expectedMenu.forEach { expectedIt ->
+                actualMenu.forEach { actualIt ->
+                    if (expectedIt.title == actualIt.title) {
+                        count += 1
+                    }
+                }
+            }
+
+            return count
+        }
+        assertEquals(7, includeMenuRecordCount(menuRecordList, actualMenu))
     }
 
     @Test
