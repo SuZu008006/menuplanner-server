@@ -48,6 +48,20 @@ class MenuServiceTest {
     }
 
     @Test
+    fun `getTargetMenu() transforms MenuRecord from MenuRepository`() {
+        entityManager.persist(MenuRecord(title = "menuTitle"))
+
+
+        val actualMenu = menuService.getTargetMenu(expectedMenu()[0].id)
+
+
+        assertEquals(1, expectedMenu().size)
+        assertEquals("menuTitle", actualMenu.title)
+    }
+
+    private fun expectedMenu() = menuRepository.findAll()
+
+    @Test
     fun `getSevenDaysMenu() transforms MenuRecord from MenuRepository`() {
         menuRecordList.forEach {
             entityManager.persist(MenuRecord(title = it.title))

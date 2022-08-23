@@ -8,6 +8,10 @@ class SpyStubMenuService : MenuService {
     var ingredient_return: List<IngredientRecord> = emptyList()
     var sevenDaysIngredient_return: List<IngredientRecord> = emptyList()
 
+    override fun getTargetMenu(id: Int): MenuRecord {
+        return MenuRecord()
+    }
+
     override fun getSevenDaysMenu(): List<MenuRecord> {
         return menu_return
     }
