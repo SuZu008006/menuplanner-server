@@ -21,7 +21,7 @@ class MenuControllerTest {
     @Test
     fun `when there are menu, menu endpoint returns list of menu`() {
         spyStubMenuService.menu_return = listOf(
-            MenuRecord(title = "menuTitleOne")
+            MenuRecord(title = "menuTitleOne", image = "menuImageOne")
         )
 
 
@@ -32,6 +32,7 @@ class MenuControllerTest {
 
             .andExpect(status().isOk)
             .andExpect(jsonPath("$[0].title", equalTo("menuTitleOne")))
+            .andExpect(jsonPath("$[0].image", equalTo("menuImageOne")))
     }
 
     @Test

@@ -25,7 +25,10 @@ class MenuImportControllerTest {
         val jsonMenuStruct = Gson().toJson(
             listOf(
                 MenuStruct(
-                    MenuRecord(title = "titleOne"),
+                    MenuRecord(
+                        title = "titleOne",
+                        image = "imageOne",
+                    ),
                     listOf(
                         IngredientRecord(
                             item = "itemOneOne",
@@ -40,7 +43,10 @@ class MenuImportControllerTest {
                     ),
                 ),
                 MenuStruct(
-                    MenuRecord(title = "titleTwo"),
+                    MenuRecord(
+                        title = "titleTwo",
+                        image = "imageTwo",
+                    ),
                     listOf(
                         IngredientRecord(
                             item = "ingredientItemTwoOne",

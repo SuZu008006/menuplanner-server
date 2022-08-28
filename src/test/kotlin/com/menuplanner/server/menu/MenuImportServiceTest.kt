@@ -37,7 +37,10 @@ class MenuImportServiceTest {
         val menuStruct =
             listOf(
                 MenuStruct(
-                    MenuRecord(title = "menuTitleOne"),
+                    MenuRecord(
+                        title = "menuTitleOne",
+                        image = "menuImageOne",
+                    ),
                     listOf(
                         IngredientRecord(
                             item = "ingredientItemOneOne",
@@ -52,7 +55,10 @@ class MenuImportServiceTest {
                     )
                 ),
                 MenuStruct(
-                    MenuRecord(title = "menuTitleTwo"),
+                    MenuRecord(
+                        title = "menuTitleTwo",
+                        image = "menuImageTwo",
+                    ),
                     listOf(
                         IngredientRecord(
                             item = "ingredientItemTwoOne",

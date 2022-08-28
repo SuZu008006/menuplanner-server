@@ -28,14 +28,14 @@ class MenuServiceTest {
     private lateinit var menuService: DefaultMenuService
 
     val menuRecordList = listOf(
-        MenuRecord(id = 1, title = "menuTitleOne"),
-        MenuRecord(id = 2, title = "menuTitleTwo"),
-        MenuRecord(id = 3, title = "menuTitleThree"),
-        MenuRecord(id = 4, title = "menuTitleFour"),
-        MenuRecord(id = 5, title = "menuTitleFive"),
-        MenuRecord(id = 6, title = "menuTitleSix"),
-        MenuRecord(id = 7, title = "menuTitleSeven"),
-        MenuRecord(id = 8, title = "menuTitleEight"),
+        MenuRecord(id = 1, title = "menuTitleOne", image = "menuImageOne"),
+        MenuRecord(id = 2, title = "menuTitleTwo", image = "menuImageTwo"),
+        MenuRecord(id = 3, title = "menuTitleThree", image = "menuImageThree"),
+        MenuRecord(id = 4, title = "menuTitleFour", image = "menuImageFour"),
+        MenuRecord(id = 5, title = "menuTitleFive", image = "menuImageFive"),
+        MenuRecord(id = 6, title = "menuTitleSix", image = "menuImageSix"),
+        MenuRecord(id = 7, title = "menuTitleSeven", image = "menuImageSeven"),
+        MenuRecord(id = 8, title = "menuTitleEight", image = "menuImageEight"),
     )
     val sevenDays = listOf(1, 2, 3, 4, 5, 6, 7)
 
@@ -49,7 +49,7 @@ class MenuServiceTest {
 
     @Test
     fun `getTargetMenu() transforms MenuRecord from MenuRepository`() {
-        entityManager.persist(MenuRecord(title = "menuTitle"))
+        entityManager.persist(MenuRecord(title = "menuTitle", image = "menuImage"))
 
 
         val actualMenu = menuService.getTargetMenu(expectedMenu()[0].id)
@@ -57,6 +57,7 @@ class MenuServiceTest {
 
         assertEquals(1, expectedMenu().size)
         assertEquals("menuTitle", actualMenu.title)
+        assertEquals("menuImage", actualMenu.image)
     }
 
     private fun expectedMenu() = menuRepository.findAll()
@@ -64,7 +65,7 @@ class MenuServiceTest {
     @Test
     fun `getSevenDaysMenu() transforms MenuRecord from MenuRepository`() {
         menuRecordList.forEach {
-            entityManager.persist(MenuRecord(title = it.title))
+            entityManager.persist(MenuRecord(title = it.title, image = it.image))
         }
 
         val actualMenu = menuService.getSevenDaysMenu()
