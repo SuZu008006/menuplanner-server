@@ -49,17 +49,30 @@ class MenuServiceTest {
 
     @Test
     fun `getTargetMenu() transforms MenuRecord from MenuRepository`() {
-        entityManager.persist(MenuRecord(title = "menuTitle", image = "menuImage"))
+        //ToDo: ingredientの確認ができていないoneToManyで作り直す必要あり？
+        entityManager.persist(
+            MenuRecord(title = "menuTitle", image = "menuImage")
+        )
+        entityManager.persist(
+            IngredientRecord(
+                item = "ingredientItem",
+                quantity = 1.0,
+                scale = "g"
+            )
+        )
 
 
         val actualMenu = menuService.getTargetMenu(expectedMenu()[0].id)
 
 
         assertEquals(1, expectedMenu().size)
-        assertEquals("menuTitle", actualMenu.title)
-        assertEquals("menuImage", actualMenu.image)
+        assertEquals("menuTitle", actualMenu.menuRecord.title)
+        assertEquals("menuImage", actualMenu.menuRecord.image)
+//        assertEquals(1, actualMenu.ingredientRecord.size)
+//        assertEquals("ingredientItem", actualMenu.ingredientRecord[0].item)
+//        assertEquals(1.0, actualMenu.ingredientRecord[0].quantity)
+//        assertEquals("g", actualMenu.ingredientRecord[0].scale)
     }
-
     private fun expectedMenu() = menuRepository.findAll()
 
     @Test

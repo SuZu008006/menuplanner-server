@@ -3,6 +3,7 @@ package com.menuplanner.server.menu
 import com.menuplanner.server.menu.entity.IngredientRecord
 import com.menuplanner.server.menu.repository.IngredientRepository
 import com.menuplanner.server.menu.entity.MenuRecord
+import com.menuplanner.server.menu.entity.MenuStruct
 import com.menuplanner.server.menu.repository.MenuRepository
 import org.springframework.stereotype.Service
 
@@ -11,8 +12,11 @@ class DefaultMenuService(
     private val menuRepository: MenuRepository,
     private val ingredientRepository: IngredientRepository,
 ) : MenuService {
-    override fun getTargetMenu(id: Int): MenuRecord {
-        return menuRepository.findDistinctById(id)
+    override fun getTargetMenu(id: Int): MenuStruct {
+        return MenuStruct(
+            menuRepository.findDistinctById(id),
+            ingredientRepository.findDistinctById(id)
+        )
     }
 
     override fun getSevenDaysMenu(): List<MenuRecord> {
@@ -37,7 +41,7 @@ class DefaultMenuService(
 }
 
 interface MenuService {
-    fun getTargetMenu(id: Int): MenuRecord
+    fun getTargetMenu(id: Int): MenuStruct
     fun getSevenDaysMenu(): List<MenuRecord>
     fun getTargetIngredient(id: Int): List<IngredientRecord>
     fun getSevenDaysIngredient(idList: List<Int>): List<IngredientRecord>

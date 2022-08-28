@@ -2,6 +2,7 @@ package com.menuplanner.server.menu
 
 import com.menuplanner.server.menu.entity.IngredientRecord
 import com.menuplanner.server.menu.entity.MenuRecord
+import com.menuplanner.server.menu.entity.MenuStruct
 import org.hamcrest.CoreMatchers.equalTo
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -36,19 +37,14 @@ class MenuControllerTest {
     }
 
     @Test
-    fun `when there are ingredient, menu_{id} endpoint returns list of ingredient`() {
-        spyStubMenuService.ingredient_return = listOf(
-            IngredientRecord(
-                item = "ingredientItemOne",
-                quantity = 110.0,
-                scale = "g"
-            ),
-            IngredientRecord(
-                item = "ingredientItemTwo",
-                quantity = 120.0,
-                scale = "g"
-            ),
-        )
+    fun `when there are ingredient, menu_{id} endpoint returns menuStruct`() {
+        spyStubMenuService.menuStruct_return =
+            MenuStruct(
+                MenuRecord(title = "titleOne", image = "imageOne"),
+                listOf(
+                    IngredientRecord(item = "itemOne", quantity = 1.0, scale = "scaleOne")
+                ),
+            )
 
         val ID = 9999
 
@@ -59,12 +55,31 @@ class MenuControllerTest {
 
 
             .andExpect(status().isOk)
-            .andExpect(jsonPath("$[0].item", equalTo("ingredientItemOne")))
-            .andExpect(jsonPath("$[0].quantity", equalTo(110.0)))
-            .andExpect(jsonPath("$[0].scale", equalTo("g")))
-            .andExpect(jsonPath("$[1].item", equalTo("ingredientItemTwo")))
-            .andExpect(jsonPath("$[1].quantity", equalTo(120.0)))
-            .andExpect(jsonPath("$[1].scale", equalTo("g")))
+            .andExpect(
+                jsonPath(
+                    buildString { append("$.menuRecord.title") }, equalTo("titleOne")
+                )
+            )
+            .andExpect(
+                jsonPath(
+                    buildString { append("$.menuRecord.image") }, equalTo("imageOne")
+                )
+            )
+            .andExpect(
+                jsonPath(
+                    buildString { append("$.ingredientRecord[0].item") }, equalTo("itemOne")
+                )
+            )
+            .andExpect(
+                jsonPath(
+                    buildString { append("$.ingredientRecord[0].quantity") }, equalTo(1.0)
+                )
+            )
+            .andExpect(
+                jsonPath(
+                    buildString { append("$.ingredientRecord[0].scale") }, equalTo("scaleOne")
+                )
+            )
     }
 
     @Test

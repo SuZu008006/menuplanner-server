@@ -2,6 +2,7 @@ package com.menuplanner.server.menu
 
 import com.menuplanner.server.menu.entity.IngredientRecord
 import com.menuplanner.server.menu.entity.MenuRecord
+import com.menuplanner.server.menu.entity.MenuStruct
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -14,8 +15,8 @@ class MenuController(private val menuService: MenuService) {
     }
 
     @GetMapping("/{id}")
-    fun getAllIngredient(@PathVariable id: Int): List<IngredientRecord> {
-        return menuService.getTargetIngredient(id)
+    fun getTargetMenuStruct(@PathVariable id: Int): MenuStruct {
+        return menuService.getTargetMenu(id)
     }
 
     @GetMapping("/summary/{id1}+{id2}+{id3}+{id4}+{id5}+{id6}+{id7}")
