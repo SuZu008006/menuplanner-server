@@ -41,6 +41,7 @@ class MenuImportControllerTest {
                             scale = "scaleOneTwo"
                         ),
                     ),
+                    emptyList(),
                 ),
                 MenuStruct(
                     MenuRecord(
@@ -59,6 +60,7 @@ class MenuImportControllerTest {
                             scale = "scaleTwoTwo"
                         ),
                     ),
+                    emptyList(),
                 ),
             )
         )

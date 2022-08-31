@@ -32,7 +32,7 @@ class DefaultMenuImportService(
             val ingredientRecordList =
                 ingredientRepository.findDistinctById(it.menuRecord.id)
 
-            return@map MenuStruct(menuRecord, ingredientRecordList)
+            return@map MenuStruct(menuRecord, ingredientRecordList, emptyList())
         }
     }
 }

@@ -44,6 +44,7 @@ class MenuControllerTest {
                 listOf(
                     IngredientRecord(item = "itemOne", quantity = 1.0, scale = "scaleOne")
                 ),
+                emptyList(),
             )
 
         val ID = 9999

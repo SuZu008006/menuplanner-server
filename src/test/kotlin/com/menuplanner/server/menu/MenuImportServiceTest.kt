@@ -52,7 +52,8 @@ class MenuImportServiceTest {
                             quantity = 1.2,
                             scale = "scaleOneTwo"
                         ),
-                    )
+                    ),
+                    emptyList(),
                 ),
                 MenuStruct(
                     MenuRecord(
@@ -70,7 +71,8 @@ class MenuImportServiceTest {
                             quantity = 2.2,
                             scale = "scaleTwoTwo"
                         ),
-                    )
+                    ),
+                    emptyList(),
                 )
             )
 

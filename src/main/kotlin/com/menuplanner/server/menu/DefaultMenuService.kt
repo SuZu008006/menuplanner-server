@@ -15,7 +15,8 @@ class DefaultMenuService(
     override fun getTargetMenu(id: Int): MenuStruct {
         return MenuStruct(
             menuRepository.findDistinctById(id),
-            ingredientRepository.findDistinctById(id)
+            ingredientRepository.findDistinctById(id),
+            emptyList()
         )
     }
 
