@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface SeasoningRepository : JpaRepository<SeasoningRecord, Int> {
+    fun findDistinctById(id: Int): List<SeasoningRecord>
 }

@@ -1,7 +1,9 @@
 package com.menuplanner.server.menu.entity
 
 data class MenuStruct(
-    var menuRecord: MenuRecord,
-    var ingredientRecord: List<IngredientRecord>,
-    var seasoningRecord: List<SeasoningRecord>,
-)
+    val menuRecord: MenuRecord,
+    val ingredientRecord: List<IngredientRecord>,
+    val seasoningRecord: List<SeasoningRecord>,
+) {
+    companion object {}
+}

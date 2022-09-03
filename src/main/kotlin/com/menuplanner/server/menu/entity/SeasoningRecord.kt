@@ -7,14 +7,25 @@ import javax.persistence.*
 data class SeasoningRecord(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "seasoning_id")
-    var seasoning_id: Int = 0,
-    @Column(name = "id")
-    var id: Int = 0,
-    @Column(name = "item")
-    var item: String = "",
-    @Column(name = "quantity")
-    var quantity: Int = 0,
-    @Column(name = "scale")
-    var scale: String = "",
-)
+    override val seasoningId: Int = 0,
+    override val id: Int = 0,
+    override val item: String = "",
+    override val quantity: Int = 0,
+    override val scale: String = "",
+) : Seasoning by SeasoningImpl()
+
+class SeasoningImpl : Seasoning {
+    override val seasoningId: Int = 0
+    override val id: Int = 0
+    override val item: String = ""
+    override val quantity: Int = 0
+    override val scale: String = ""
+}
+
+interface Seasoning {
+    val seasoningId: Int
+    val id: Int
+    val item: String
+    val quantity: Int
+    val scale: String
+}

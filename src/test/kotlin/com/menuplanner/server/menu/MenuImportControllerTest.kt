@@ -3,7 +3,7 @@ package com.menuplanner.server.menu
 import com.google.gson.Gson
 import com.menuplanner.server.menu.entity.IngredientRecord
 import com.menuplanner.server.menu.entity.MenuRecord
-import com.menuplanner.server.menu.entity.MenuStruct
+import com.menuplanner.server.menu.entity.SeasoningRecord
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -22,48 +22,43 @@ class MenuImportControllerTest {
         spyStubMenuImportService = SpyStubMenuImportService()
         menuImportController = MenuImportController(spyStubMenuImportService)
 
-        val jsonMenuStruct = Gson().toJson(
-            listOf(
-                MenuStruct(
-                    MenuRecord(
-                        title = "titleOne",
-                        image = "imageOne",
-                    ),
-                    listOf(
-                        IngredientRecord(
-                            item = "itemOneOne",
-                            quantity = 1.1,
-                            scale = "scaleOneOne"
-                        ),
-                        IngredientRecord(
-                            item = "itemOneTwo",
-                            quantity = 1.2,
-                            scale = "scaleOneTwo"
-                        ),
-                    ),
-                    emptyList(),
-                ),
-                MenuStruct(
-                    MenuRecord(
-                        title = "titleTwo",
-                        image = "imageTwo",
-                    ),
-                    listOf(
-                        IngredientRecord(
-                            item = "ingredientItemTwoOne",
-                            quantity = 2.1,
-                            scale = "scaleTwoOne"
-                        ),
-                        IngredientRecord(
-                            item = "ingredientItemTwoTwo",
-                            quantity = 2.2,
-                            scale = "scaleTwoTwo"
-                        ),
-                    ),
-                    emptyList(),
+        val menuStructOne = MenuStructBuilder()
+            .withMenuRecord(
+                MenuRecord(title = "menuTitleOne", image = "menuImageOne")
+            )
+            .ingredientRecord(
+                listOf(
+                    IngredientRecord(item = "itemOneOne", quantity = 1.1, scale = "scaleOneOne"),
+                    IngredientRecord(item = "itemOneTwo", quantity = 1.2, scale = "scaleOneTwo"),
                 ),
             )
-        )
+            .seasoningRecord(
+                listOf(
+                    SeasoningRecord(item = "itemOneOne", quantity = 11, scale = "scaleOneOne"),
+                    SeasoningRecord(item = "itemOneTwo", quantity = 12, scale = "scaleOneTwo"),
+                ),
+            )
+            .build()
+        val menuStructTwo = MenuStructBuilder()
+            .withMenuRecord(
+                MenuRecord(title = "menuTitleTwo", image = "menuImageTwo")
+            )
+            .ingredientRecord(
+                listOf(
+                    IngredientRecord(item = "itemTwoOne", quantity = 2.1, scale = "scaleOneOne"),
+                    IngredientRecord(item = "itemTwoTwo", quantity = 2.2, scale = "scaleOneTwo"),
+                ),
+            )
+            .seasoningRecord(
+                listOf(
+                    SeasoningRecord(item = "itemTwoOne", quantity = 21, scale = "scaleTwoOne"),
+                    SeasoningRecord(item = "itemTwoTwo", quantity = 22, scale = "scaleTwoTwo"),
+                ),
+            )
+            .build()
+        val menuStructList = listOf(menuStructOne, menuStructTwo)
+
+        val jsonMenuStruct = Gson().toJson(menuStructList)
 
         resultActions = MockMvcBuilders.standaloneSetup(menuImportController)
             .build()
