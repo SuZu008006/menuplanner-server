@@ -34,8 +34,8 @@ class MenuImportControllerTest {
             )
             .seasoningRecord(
                 listOf(
-                    SeasoningRecord(item = "itemOneOne", quantity = 11, scale = "scaleOneOne"),
-                    SeasoningRecord(item = "itemOneTwo", quantity = 12, scale = "scaleOneTwo"),
+                    SeasoningRecord(item = "itemOneOne", quantity = 11.1, scale = "scaleOneOne"),
+                    SeasoningRecord(item = "itemOneTwo", quantity = 11.2, scale = "scaleOneTwo"),
                 ),
             )
             .build()
@@ -51,8 +51,8 @@ class MenuImportControllerTest {
             )
             .seasoningRecord(
                 listOf(
-                    SeasoningRecord(item = "itemTwoOne", quantity = 21, scale = "scaleTwoOne"),
-                    SeasoningRecord(item = "itemTwoTwo", quantity = 22, scale = "scaleTwoTwo"),
+                    SeasoningRecord(item = "itemTwoOne", quantity = 12.1, scale = "scaleTwoOne"),
+                    SeasoningRecord(item = "itemTwoTwo", quantity = 12.2, scale = "scaleTwoTwo"),
                 ),
             )
             .build()

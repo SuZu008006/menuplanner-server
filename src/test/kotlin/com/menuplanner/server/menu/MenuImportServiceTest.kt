@@ -114,16 +114,16 @@ class MenuImportServiceTest {
         val menuStructOne = MenuStructBuilder()
             .seasoningRecord(
                 listOf(
-                    SeasoningRecord(item = "itemOneOne", quantity = 11, scale = "scaleOneOne"),
-                    SeasoningRecord(item = "itemOneTwo", quantity = 12, scale = "scaleOneTwo"),
+                    SeasoningRecord(item = "itemOneOne", quantity = 1.1, scale = "scaleOneOne"),
+                    SeasoningRecord(item = "itemOneTwo", quantity = 1.2, scale = "scaleOneTwo"),
                 ),
             )
             .build()
         val menuStructTwo = MenuStructBuilder()
             .seasoningRecord(
                 listOf(
-                    SeasoningRecord(item = "itemTwoOne", quantity = 21, scale = "scaleTwoOne"),
-                    SeasoningRecord(item = "itemTwoTwo", quantity = 22, scale = "scaleTwoTwo"),
+                    SeasoningRecord(item = "itemTwoOne", quantity = 2.1, scale = "scaleTwoOne"),
+                    SeasoningRecord(item = "itemTwoTwo", quantity = 2.2, scale = "scaleTwoTwo"),
                 ),
             )
             .build()
