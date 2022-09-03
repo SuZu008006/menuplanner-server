@@ -3,6 +3,7 @@ package com.menuplanner.server.menu
 import com.menuplanner.server.menu.entity.IngredientRecord
 import com.menuplanner.server.menu.entity.MenuRecord
 import com.menuplanner.server.menu.entity.MenuStruct
+import com.menuplanner.server.menu.entity.SeasoningRecord
 import org.hamcrest.CoreMatchers.equalTo
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -44,7 +45,9 @@ class MenuControllerTest {
                 listOf(
                     IngredientRecord(item = "itemOne", quantity = 1.0, scale = "scaleOne")
                 ),
-                emptyList(),
+                listOf(
+                    SeasoningRecord(item = "itemTwo", quantity = 2.0, scale = "scaleTwo")
+                ),
             )
 
         val ID = 9999
@@ -79,6 +82,21 @@ class MenuControllerTest {
             .andExpect(
                 jsonPath(
                     buildString { append("$.ingredientRecord[0].scale") }, equalTo("scaleOne")
+                )
+            )
+            .andExpect(
+                jsonPath(
+                    buildString { append("$.seasoningRecord[0].item") }, equalTo("itemTwo")
+                )
+            )
+            .andExpect(
+                jsonPath(
+                    buildString { append("$.seasoningRecord[0].quantity") }, equalTo(2.0)
+                )
+            )
+            .andExpect(
+                jsonPath(
+                    buildString { append("$.seasoningRecord[0].scale") }, equalTo("scaleTwo")
                 )
             )
     }

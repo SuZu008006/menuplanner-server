@@ -2,40 +2,41 @@ package com.menuplanner.server.menu
 
 import com.menuplanner.server.menu.entity.IngredientRecord
 import com.menuplanner.server.menu.entity.MenuRecord
+import com.menuplanner.server.menu.entity.SeasoningRecord
 import com.menuplanner.server.menu.repository.IngredientRepository
 import com.menuplanner.server.menu.repository.MenuRepository
+import com.menuplanner.server.menu.repository.SeasoningRepository
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager
 import org.springframework.test.context.junit4.SpringRunner
 
 @RunWith(SpringRunner::class)
 @DataJpaTest
 class MenuServiceTest {
     @Autowired
-    private lateinit var entityManager: TestEntityManager
-
-    @Autowired
     private lateinit var menuRepository: MenuRepository
 
     @Autowired
     private lateinit var ingredientRepository: IngredientRepository
 
+    @Autowired
+    private lateinit var seasoningRepository: SeasoningRepository
+
     private lateinit var menuService: DefaultMenuService
 
     val menuRecordList = listOf(
-        MenuRecord(id = 1, title = "menuTitleOne", image = "menuImageOne"),
-        MenuRecord(id = 2, title = "menuTitleTwo", image = "menuImageTwo"),
-        MenuRecord(id = 3, title = "menuTitleThree", image = "menuImageThree"),
-        MenuRecord(id = 4, title = "menuTitleFour", image = "menuImageFour"),
-        MenuRecord(id = 5, title = "menuTitleFive", image = "menuImageFive"),
-        MenuRecord(id = 6, title = "menuTitleSix", image = "menuImageSix"),
-        MenuRecord(id = 7, title = "menuTitleSeven", image = "menuImageSeven"),
-        MenuRecord(id = 8, title = "menuTitleEight", image = "menuImageEight"),
+        MenuRecord(title = "menuTitleOne", image = "menuImageOne"),
+        MenuRecord(title = "menuTitleTwo", image = "menuImageTwo"),
+        MenuRecord(title = "menuTitleThree", image = "menuImageThree"),
+        MenuRecord(title = "menuTitleFour", image = "menuImageFour"),
+        MenuRecord(title = "menuTitleFive", image = "menuImageFive"),
+        MenuRecord(title = "menuTitleSix", image = "menuImageSix"),
+        MenuRecord(title = "menuTitleSeven", image = "menuImageSeven"),
+        MenuRecord(title = "menuTitleEight", image = "menuImageEight"),
     )
     val sevenDays = listOf(1, 2, 3, 4, 5, 6, 7)
 
@@ -43,47 +44,57 @@ class MenuServiceTest {
     fun setUpEach() {
         menuService = DefaultMenuService(
             menuRepository,
-            ingredientRepository
+            ingredientRepository,
+            seasoningRepository
         )
     }
 
     @Test
     fun `getTargetMenu() transforms MenuRecord from MenuRepository`() {
-        entityManager.persist(
-            MenuRecord(title = "menuTitle", image = "menuImage")
-        )
-        val actualMenuId = expectedMenu()[0].id
-        entityManager.persist(
+        menuRepository.save(MenuRecord(title = "titleOne", image = "imageOne"))
+        val actualMenuId = menuRepository.findAll()[0].id
+        ingredientRepository.save(
             IngredientRecord(
                 id = actualMenuId,
-                item = "ingredientItem",
-                quantity = 1.0,
-                scale = "g"
-            )
+                item = "itemOneOne",
+                quantity = 1.1,
+                scale = "scaleOne"
+            ),
+        )
+        seasoningRepository.save(
+            SeasoningRecord(
+                id = actualMenuId,
+                item = "itemTwoOne",
+                quantity = 2.1,
+                scale = "scaleTwo"
+            ),
         )
         val actualMenu = menuService.getTargetMenu(actualMenuId)
 
 
-        assertEquals(1, expectedMenu().size)
-        assertEquals("menuTitle", actualMenu.menuRecord.title)
-        assertEquals("menuImage", actualMenu.menuRecord.image)
+        assertEquals(1, menuRepository.findAll().size)
+        assertEquals("titleOne", actualMenu.menuRecord.title)
+        assertEquals("imageOne", actualMenu.menuRecord.image)
         assertEquals(1, actualMenu.ingredientRecord.size)
-        assertEquals("ingredientItem", actualMenu.ingredientRecord[0].item)
-        assertEquals(1.0, actualMenu.ingredientRecord[0].quantity)
-        assertEquals("g", actualMenu.ingredientRecord[0].scale)
+        assertEquals("itemOneOne", actualMenu.ingredientRecord[0].item)
+        assertEquals(1.1, actualMenu.ingredientRecord[0].quantity)
+        assertEquals("scaleOne", actualMenu.ingredientRecord[0].scale)
+        assertEquals(1, actualMenu.seasoningRecord.size)
+        assertEquals("itemTwoOne", actualMenu.seasoningRecord[0].item)
+        assertEquals(2.1, actualMenu.seasoningRecord[0].quantity)
+        assertEquals("scaleTwo", actualMenu.seasoningRecord[0].scale)
     }
-    private fun expectedMenu() = menuRepository.findAll()
 
     @Test
     fun `getSevenDaysMenu() transforms MenuRecord from MenuRepository`() {
-        menuRecordList.forEach {
-            entityManager.persist(MenuRecord(title = it.title, image = it.image))
-        }
+        menuRepository.saveAll(menuRecordList)
+
 
         val actualMenu = menuService.getSevenDaysMenu()
 
 
         assertEquals(7, actualMenu.size)
+        assertNotEquals(menuRecordList, actualMenu)
 
         fun includeMenuRecordCount(expectedMenu: List<MenuRecord>, actualMenu: List<MenuRecord>): Int {
             var count = 0
@@ -103,36 +114,35 @@ class MenuServiceTest {
 
     @Test
     fun `getTargetIngredient() transforms IngredientRecord from IngredientRepository`() {
-        entityManager.persist(
-            IngredientRecord(
-                id = 1,
-                item = "ingredientItem",
-                quantity = (1 + 0.1),
-                scale = "g"
-            )
-        )
-
-        val actualIngredient = menuService.getTargetIngredient(1)
-
-
-        val expectedIngredient = listOf(
+        ingredientRepository.save(
             IngredientRecord(
                 id = 1,
                 item = "ingredientItem",
                 quantity = 1.1,
-                scale = "g"
+                scale = "scaleOne"
             ),
         )
-        assertEquals(expectedIngredient[0].id, actualIngredient[0].id)
-        assertEquals(expectedIngredient[0].item, actualIngredient[0].item)
-        assertEquals(expectedIngredient[0].quantity, actualIngredient[0].quantity)
-        assertEquals(expectedIngredient[0].scale, actualIngredient[0].scale)
+
+
+        val actualIngredient = menuService.getTargetIngredient(1)
+
+
+        val expectedIngredient = IngredientRecord(
+            id = 1,
+            item = "ingredientItem",
+            quantity = 1.1,
+            scale = "scaleOne"
+        )
+        assertEquals(expectedIngredient.id, actualIngredient[0].id)
+        assertEquals(expectedIngredient.item, actualIngredient[0].item)
+        assertEquals(expectedIngredient.quantity, actualIngredient[0].quantity)
+        assertEquals(expectedIngredient.scale, actualIngredient[0].scale)
     }
 
     @Test
     fun `getSevenDaysIngredient() transforms IngredientRecord from IngredientRepository`() {
         sevenDays.forEach {
-            entityManager.persist(
+            ingredientRepository.save(
                 IngredientRecord(
                     id = it,
                     item = "ingredientItem",

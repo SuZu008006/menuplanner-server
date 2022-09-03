@@ -5,18 +5,20 @@ import com.menuplanner.server.menu.repository.IngredientRepository
 import com.menuplanner.server.menu.entity.MenuRecord
 import com.menuplanner.server.menu.entity.MenuStruct
 import com.menuplanner.server.menu.repository.MenuRepository
+import com.menuplanner.server.menu.repository.SeasoningRepository
 import org.springframework.stereotype.Service
 
 @Service
 class DefaultMenuService(
     private val menuRepository: MenuRepository,
     private val ingredientRepository: IngredientRepository,
+    private val seasoningRepository: SeasoningRepository,
 ) : MenuService {
     override fun getTargetMenu(id: Int): MenuStruct {
         return MenuStruct(
             menuRepository.findDistinctById(id),
             ingredientRepository.findDistinctById(id),
-            emptyList()
+            seasoningRepository.findDistinctById(id),
         )
     }
 
