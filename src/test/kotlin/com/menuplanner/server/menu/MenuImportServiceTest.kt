@@ -1,9 +1,11 @@
 package com.menuplanner.server.menu
 
 import com.menuplanner.server.menu.entity.IngredientRecord
+import com.menuplanner.server.menu.entity.MakeRecord
 import com.menuplanner.server.menu.entity.MenuRecord
 import com.menuplanner.server.menu.entity.SeasoningRecord
 import com.menuplanner.server.menu.repository.IngredientRepository
+import com.menuplanner.server.menu.repository.MakeRepository
 import com.menuplanner.server.menu.repository.MenuRepository
 import com.menuplanner.server.menu.repository.SeasoningRepository
 import org.junit.jupiter.api.Assertions.*
@@ -26,6 +28,9 @@ class MenuImportServiceTest {
     @Autowired
     private lateinit var seasoningRepository: SeasoningRepository
 
+    @Autowired
+    private lateinit var makeRepository: MakeRepository
+
     private lateinit var menuImportService: DefaultMenuImportService
 
     @BeforeEach
@@ -34,6 +39,7 @@ class MenuImportServiceTest {
             menuRepository,
             ingredientRepository,
             seasoningRepository,
+            makeRepository,
         )
     }
 
@@ -65,7 +71,7 @@ class MenuImportServiceTest {
     @Test
     fun `importMenu() transforms MenuStruct from ingredient repository`() {
         val menuStructOne = MenuStructBuilder()
-            .ingredientRecord(
+            .withIngredientRecord(
                 listOf(
                     IngredientRecord(item = "itemOneOne", quantity = 1.1, scale = "scaleOneOne"),
                     IngredientRecord(item = "itemOneTwo", quantity = 1.2, scale = "scaleOneTwo"),
@@ -73,7 +79,7 @@ class MenuImportServiceTest {
             )
             .build()
         val menuStructTwo = MenuStructBuilder()
-            .ingredientRecord(
+            .withIngredientRecord(
                 listOf(
                     IngredientRecord(item = "itemTwoOne", quantity = 2.1, scale = "scaleOneOne"),
                     IngredientRecord(item = "itemTwoTwo", quantity = 2.2, scale = "scaleOneTwo"),
@@ -112,7 +118,7 @@ class MenuImportServiceTest {
     @Test
     fun `importMenu() transforms MenuStruct from seasoning repository`() {
         val menuStructOne = MenuStructBuilder()
-            .seasoningRecord(
+            .withSeasoningRecord(
                 listOf(
                     SeasoningRecord(item = "itemOneOne", quantity = 1.1, scale = "scaleOneOne"),
                     SeasoningRecord(item = "itemOneTwo", quantity = 1.2, scale = "scaleOneTwo"),
@@ -120,7 +126,7 @@ class MenuImportServiceTest {
             )
             .build()
         val menuStructTwo = MenuStructBuilder()
-            .seasoningRecord(
+            .withSeasoningRecord(
                 listOf(
                     SeasoningRecord(item = "itemTwoOne", quantity = 2.1, scale = "scaleTwoOne"),
                     SeasoningRecord(item = "itemTwoTwo", quantity = 2.2, scale = "scaleTwoTwo"),
@@ -151,6 +157,45 @@ class MenuImportServiceTest {
                 assertEquals(
                     seasoning.scale,
                     seasoningRepository.findDistinctById(menuStruct.menuRecord.id)[indexSeasoning].scale
+                )
+            }
+        }
+    }
+
+    @Test
+    fun `importMenu() transforms MenuStruct from make repository`() {
+        val menuStructOne = MenuStructBuilder()
+            .withMakeRecord(
+                listOf(
+                    MakeRecord(content = "makeOneOne"),
+                    MakeRecord(content = "makeOneTwo"),
+                )
+            )
+            .build()
+        val menuStructTwo = MenuStructBuilder()
+            .withMakeRecord(
+                listOf(
+                    MakeRecord(content = "makTwoOne"),
+                    MakeRecord(content = "makTwoTwo"),
+                )
+            )
+            .build()
+
+        val menuStructList = listOf(menuStructOne, menuStructTwo)
+
+
+        menuImportService.importMenu(menuStructList)
+
+
+        for ((indexMenuStruct, menuStruct) in menuStructList.withIndex()) {
+            for ((indexMake, make) in menuStruct.makeRecord.withIndex()) {
+                assertEquals(
+                    menuRepository.findAll()[indexMenuStruct].id,
+                    makeRepository.findDistinctById(menuStruct.menuRecord.id)[indexMake].id
+                )
+                assertEquals(
+                    make.content,
+                    makeRepository.findDistinctById(menuStruct.menuRecord.id)[indexMake].content
                 )
             }
         }

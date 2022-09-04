@@ -48,6 +48,7 @@ class MenuControllerTest {
                 listOf(
                     SeasoningRecord(item = "itemTwo", quantity = 2.0, scale = "scaleTwo")
                 ),
+                emptyList()
             )
 
         val ID = 9999

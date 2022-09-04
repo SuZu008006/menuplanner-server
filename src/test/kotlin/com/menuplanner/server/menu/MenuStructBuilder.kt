@@ -1,9 +1,6 @@
 package com.menuplanner.server.menu
 
-import com.menuplanner.server.menu.entity.IngredientRecord
-import com.menuplanner.server.menu.entity.MenuRecord
-import com.menuplanner.server.menu.entity.MenuStruct
-import com.menuplanner.server.menu.entity.SeasoningRecord
+import com.menuplanner.server.menu.entity.*
 
 val MenuStruct.Companion.builder: MenuStructBuilder
     get() = MenuStructBuilder()
@@ -12,19 +9,25 @@ class MenuStructBuilder {
     private var menuRecord: MenuRecord = MenuRecord()
     private var ingredientRecord: List<IngredientRecord> = emptyList()
     private var seasoningRecord: List<SeasoningRecord> = emptyList()
+    private var makeRecord: List<MakeRecord> = emptyList()
 
     fun withMenuRecord(newValue: MenuRecord): MenuStructBuilder {
         menuRecord = newValue
         return this
     }
 
-    fun ingredientRecord(newValue: List<IngredientRecord>): MenuStructBuilder {
+    fun withIngredientRecord(newValue: List<IngredientRecord>): MenuStructBuilder {
         ingredientRecord = newValue
         return this
     }
 
-    fun seasoningRecord(newValue: List<SeasoningRecord>): MenuStructBuilder {
+    fun withSeasoningRecord(newValue: List<SeasoningRecord>): MenuStructBuilder {
         seasoningRecord = newValue
+        return this
+    }
+
+    fun withMakeRecord(newValue: List<MakeRecord>): MenuStructBuilder {
+        makeRecord = newValue
         return this
     }
 
@@ -33,6 +36,7 @@ class MenuStructBuilder {
             menuRecord,
             ingredientRecord,
             seasoningRecord,
+            makeRecord,
         )
     }
 }

@@ -19,6 +19,7 @@ class DefaultMenuService(
             menuRepository.findDistinctById(id),
             ingredientRepository.findDistinctById(id),
             seasoningRepository.findDistinctById(id),
+            emptyList(),
         )
     }
 
