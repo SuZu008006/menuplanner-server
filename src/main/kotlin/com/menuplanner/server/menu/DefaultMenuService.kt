@@ -4,6 +4,7 @@ import com.menuplanner.server.menu.entity.IngredientRecord
 import com.menuplanner.server.menu.repository.IngredientRepository
 import com.menuplanner.server.menu.entity.MenuRecord
 import com.menuplanner.server.menu.entity.MenuStruct
+import com.menuplanner.server.menu.repository.MakeRepository
 import com.menuplanner.server.menu.repository.MenuRepository
 import com.menuplanner.server.menu.repository.SeasoningRepository
 import org.springframework.stereotype.Service
@@ -13,13 +14,14 @@ class DefaultMenuService(
     private val menuRepository: MenuRepository,
     private val ingredientRepository: IngredientRepository,
     private val seasoningRepository: SeasoningRepository,
+    private val makeRepository: MakeRepository,
 ) : MenuService {
     override fun getTargetMenu(id: Int): MenuStruct {
         return MenuStruct(
-            menuRepository.findDistinctById(id),
-            ingredientRepository.findDistinctById(id),
-            seasoningRepository.findDistinctById(id),
-            emptyList(),
+            menuRecord = menuRepository.findDistinctById(id),
+            ingredientRecord = ingredientRepository.findDistinctById(id),
+            seasoningRecord = seasoningRepository.findDistinctById(id),
+            makeRecord = makeRepository.findDistinctById(id),
         )
     }
 

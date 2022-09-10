@@ -1,9 +1,11 @@
 package com.menuplanner.server.menu
 
 import com.menuplanner.server.menu.entity.IngredientRecord
+import com.menuplanner.server.menu.entity.MakeRecord
 import com.menuplanner.server.menu.entity.MenuRecord
 import com.menuplanner.server.menu.entity.SeasoningRecord
 import com.menuplanner.server.menu.repository.IngredientRepository
+import com.menuplanner.server.menu.repository.MakeRepository
 import com.menuplanner.server.menu.repository.MenuRepository
 import com.menuplanner.server.menu.repository.SeasoningRepository
 import org.junit.jupiter.api.Assertions.*
@@ -22,9 +24,10 @@ class MenuServiceTest {
 
     @Autowired
     private lateinit var ingredientRepository: IngredientRepository
-
     @Autowired
     private lateinit var seasoningRepository: SeasoningRepository
+    @Autowired
+    private lateinit var makeRepository: MakeRepository
 
     private lateinit var menuService: DefaultMenuService
 
@@ -43,9 +46,10 @@ class MenuServiceTest {
     @BeforeEach
     fun setUpEach() {
         menuService = DefaultMenuService(
-            menuRepository,
-            ingredientRepository,
-            seasoningRepository
+            menuRepository =  menuRepository,
+            ingredientRepository =  ingredientRepository,
+            seasoningRepository =  seasoningRepository,
+            makeRepository =  makeRepository
         )
     }
 
@@ -69,6 +73,14 @@ class MenuServiceTest {
                 scale = "scaleTwo"
             ),
         )
+        makeRepository.save(
+            MakeRecord(
+                id = actualMenuId,
+                content = "makeOne",
+            )
+        )
+
+
         val actualMenu = menuService.getTargetMenu(actualMenuId)
 
 
@@ -83,6 +95,7 @@ class MenuServiceTest {
         assertEquals("itemTwoOne", actualMenu.seasoningRecord[0].item)
         assertEquals(2.1, actualMenu.seasoningRecord[0].quantity)
         assertEquals("scaleTwo", actualMenu.seasoningRecord[0].scale)
+        assertEquals("makeOne", actualMenu.makeRecord[0].content)
     }
 
     @Test
