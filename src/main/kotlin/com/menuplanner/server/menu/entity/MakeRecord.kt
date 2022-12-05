@@ -6,7 +6,6 @@ import javax.persistence.*
 @Table(name = "make")
 data class MakeRecord(
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     override val makeId: Int = 0,
     override val id: Int = 0,
     override val content: String = "",

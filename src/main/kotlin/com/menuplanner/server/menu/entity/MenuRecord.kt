@@ -7,7 +7,6 @@ import com.menuplanner.server.menu.entity.MenuImpl as MenuImpl
 @Table(name = "menu")
 data class MenuRecord(
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     override val id: Int = 0,
     override val title: String = "",
     override val image: String = "",

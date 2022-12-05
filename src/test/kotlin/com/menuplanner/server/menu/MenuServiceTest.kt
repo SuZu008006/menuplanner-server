@@ -32,14 +32,14 @@ class MenuServiceTest {
     private lateinit var menuService: DefaultMenuService
 
     val menuRecordList = listOf(
-        MenuRecord(title = "menuTitleOne", image = "menuImageOne"),
-        MenuRecord(title = "menuTitleTwo", image = "menuImageTwo"),
-        MenuRecord(title = "menuTitleThree", image = "menuImageThree"),
-        MenuRecord(title = "menuTitleFour", image = "menuImageFour"),
-        MenuRecord(title = "menuTitleFive", image = "menuImageFive"),
-        MenuRecord(title = "menuTitleSix", image = "menuImageSix"),
-        MenuRecord(title = "menuTitleSeven", image = "menuImageSeven"),
-        MenuRecord(title = "menuTitleEight", image = "menuImageEight"),
+        MenuRecord(id = 1,title = "menuTitleOne", image = "menuImageOne"),
+        MenuRecord(id = 2,title = "menuTitleTwo", image = "menuImageTwo"),
+        MenuRecord(id = 3,title = "menuTitleThree", image = "menuImageThree"),
+        MenuRecord(id = 4,title = "menuTitleFour", image = "menuImageFour"),
+        MenuRecord(id = 5,title = "menuTitleFive", image = "menuImageFive"),
+        MenuRecord(id = 6,title = "menuTitleSix", image = "menuImageSix"),
+        MenuRecord(id = 7,title = "menuTitleSeven", image = "menuImageSeven"),
+        MenuRecord(id = 8,title = "menuTitleEight", image = "menuImageEight"),
     )
     val sevenDays = listOf(1, 2, 3, 4, 5, 6, 7)
 
@@ -55,7 +55,7 @@ class MenuServiceTest {
 
     @Test
     fun `getTargetMenu() transforms MenuRecord from MenuRepository`() {
-        menuRepository.save(MenuRecord(title = "titleOne", image = "imageOne"))
+        menuRepository.save(MenuRecord(id = 1,title = "titleOne", image = "imageOne"))
         val actualMenuId = menuRepository.findAll()[0].id
         ingredientRepository.save(
             IngredientRecord(
@@ -158,9 +158,10 @@ class MenuServiceTest {
             ingredientRepository.save(
                 IngredientRecord(
                     id = it,
+                    ingredientId = it,
                     item = "ingredientItem",
                     quantity = (it + 0.1),
-                    scale = "g"
+                    scale = "g",
                 )
             )
         }

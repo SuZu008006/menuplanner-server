@@ -6,7 +6,6 @@ import javax.persistence.*
 @Table(name = "seasoning")
 data class SeasoningRecord(
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     override val seasoningId: Int = 0,
     override val id: Int = 0,
     override val item: String = "",

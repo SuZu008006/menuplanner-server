@@ -14,6 +14,7 @@ class CorsConfiguration {
                 registry
                     .addMapping("/**")
                     .allowedOrigins("*")
+                    .allowedMethods("HEAD","GET","POST","PUT","DELETE","PATCH","OPTIONS")
             }
         }
     }
